@@ -14,13 +14,13 @@ Basic JavaScript logic
 ## Ⅱ. Core Functionality & Features
 **Question & Answer System:**
 The app presents questions to the user.
-Each question should have multiple-choice answers.
+Each question has multiple-choice answers.
 
-**Scoring System:** Implement a system to track and display the user's score.
+**Scoring System:** Implements a system to track and display the user's score.
 
-**Tech-Related Content:** Quizzes should feature categories and questions related to technology.
+**Tech-Related Content:** Quizzes have feature categories and questions related to technology.
 
-**Randomized Question Count:** Each quiz session should present a randomized number of questions to the user.
+**Randomized Question Count:** Each quiz session presents a randomized number of questions to the user.
 
 ## Ⅲ. User-Side Requirements
 **User Identification:** Users are able to enter their name.
