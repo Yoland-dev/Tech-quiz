@@ -19,6 +19,8 @@
                         'custom-red': '#ec2309',
                         'custom-dark-gray': '#424a58',
                         'custom-light-gray': '#e7eaee',
+                        'medium-gray': '#939496;',
+                        'strong-green': '#0c8341'
                     },
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif'],
@@ -45,8 +47,10 @@
             <div id="timerDisplay" class="text-lg font-semibold text-red-400">Time: 15s</div>
             <div id="questionCounter" class="text-sm text-gray-400">Question 1/10</div>
         </div>
-        <div class="progress-bar-bg w-full h-3 rounded-full mb-4">
-            <div id="progressBar" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+        <div class="bg-medium-gray w-full h-3 rounded-full mb-4">
+            <div id="progressBar"
+                class="bg-strong-green rounded-md transition-width duration-300 ease-in-out h-3 rounded-full"
+                style="width: 0%;"></div>
         </div>
         <h2 id="questionText" class="text-xl font-semibold mb-6 text-gray-500 text-center min-h-[60px]">Question text
             will appear here...</h2>
@@ -61,9 +65,15 @@
         <h3 class="text-lg font-semibold mb-3 text-center text-blue-300">Top Scores (Overall)</h3>
         <ul id="highScoresListScoreView" class="space-y-1 text-center max-h-40 overflow-y-auto mb-6">
         </ul>
-        <button id="playAgainBtn" class="btn btn-primary w-full mb-3">Play Again</button>
-        <button id="viewLeaderboardFromScoreBtn" class="btn btn-secondary w-full mb-3">View Full Leaderboard</button>
-        <button id="backToHomeBtn" class="btn btn-secondary w-full">Back to Home</button>
+        <button id="playAgainBtn"
+            class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 font-semibold bg-custom-red hover:bg-red-500 text-white w-full mb-3">Play
+            Again</button>
+        <button id="viewLeaderboardFromScoreBtn"
+            class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray hover:bg-gray-600 w-full mb-3">View
+            Full Leaderboard</button>
+        <button id="backToHomeBtn"
+            class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray hover:bg-gray-600 w-full">Back
+            to Home</button>
     </div>
     <script src="quiz.js"></script>
 </body>
