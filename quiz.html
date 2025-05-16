@@ -2,80 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Quiz App</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz View</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    backgroundColor: {
-                        'custom-light-blue': '#e5eefa',
-                        'custom-red': '#ec2309',
-                        'custom-dark-gray': '#424a58',
-                        'custom-light-gray': '#e7eaee',
-                        'medium-gray': '#939496;',
-                        'strong-green': '#0c8341'
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    borderColor: {
-                        'charcoal-gray': '#4b4b50'
-                    },
-                    textColor: {
-                        'custom-dark': '#1b1c1d',
-                        'custom-very-dark-gray': '#1d1e1f'
-                    },
-                    boxShadow: {
-                        'custom': '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)',
-                    }
-                }
-            }
-        }
-    </script>
+    <script defer src="quiz.js"></script>
 </head>
 
-<body class="bg-gray-100 font-sans">
-    <div id="quiz-view" class="view">
-        <div class="flex justify-between items-center mb-4">
-            <div id="timerDisplay" class="text-lg font-semibold text-red-400">Time: 15s</div>
-            <div id="questionCounter" class="text-sm text-gray-400">Question 1/10</div>
-        </div>
-        <div class="bg-medium-gray w-full h-3 rounded-full mb-4">
-            <div id="progressBar"
-                class="bg-strong-green rounded-md transition-width duration-300 ease-in-out h-3 rounded-full"
-                style="width: 0%;"></div>
-        </div>
-        <h2 id="questionText" class="text-xl font-semibold mb-6 text-gray-500 text-center min-h-[60px]">Question text
-            will appear here...</h2>
-        <div id="answerOptions" class="space-y-3">
-        </div>
-        <p id="feedbackText" class="mt-4 text-center font-medium min-h-[24px]"></p>
-    </div>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div id="quiz-view" class="w-full max-w-xl bg-white rounded-2xl shadow-lg p-6 sm:p-8 flex flex-col gap-6">
 
-    <div id="score-view" class="view">
-        <h2 class="text-2xl font-bold text-center mb-4 text-gray-600">Quiz Completed!</h2>
-        <p id="userFinalScore" class="text-xl text-center mb-6">Your Score: 0 / 0</p>
-        <h3 class="text-lg font-semibold mb-3 text-center text-blue-300">Top Scores (Overall)</h3>
-        <ul id="highScoresListScoreView" class="space-y-1 text-center max-h-40 overflow-y-auto mb-6">
-        </ul>
-        <button id="playAgainBtn"
-            class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 font-semibold bg-custom-red hover:bg-red-500 text-white w-full mb-3">Play
-            Again</button>
-        <button id="viewLeaderboardFromScoreBtn"
-            class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray hover:bg-gray-600 w-full mb-3">View
-            Full Leaderboard</button>
-        <button id="backToHomeBtn"
-            class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray hover:bg-gray-600 w-full">Back
-            to Home</button>
+        <div class="flex justify-between text-sm text-gray-500">
+            <div id="timerDisplay" class="font-semibold text-red-500">Time: --</div>
+            <div id="questionCounter">Question --/--</div>
+        </div>
+
+        <div class="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+            <div id="progressBar" class="h-full bg-blue-500 transition-all duration-300" style="width: 0%;"></div>
+        </div>
+
+        <h2 id="questionText" class="text-xl sm:text-2xl font-semibold text-center text-gray-700 min-h-[60px]">
+            Loading question...
+        </h2>
+
+        <div id="answerOptions" class="flex flex-col gap-4"></div>
+
+        <p id="feedbackText" class="text-center text-base font-medium min-h-[24px]"></p>
     </div>
-    <script src="quiz.js"></script>
 </body>
-
 </html>
