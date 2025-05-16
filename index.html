@@ -16,12 +16,16 @@
                 extend: {
                     backgroundColor: {
                         'custom-light-blue': '#e5eefa',
+                        'custom-red': '#ec2309'
                     },
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif'],
                     },
                     textColor: {
                         'custom-dark': '#1b1c1d'
+                    },
+                    boxShadow: {
+                        'custom': '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)',
                     }
                 }
             }
@@ -36,7 +40,8 @@
             <img id="logo" src="images.jpeg" alt="Quiz App Logo">
         </div>
         <div id="setup-view" class="view active-view">
-            <h1 class="text-3xl font-bold text-center mb-6 text-gray-500">Tech Quiz Challenge!</h1>
+            <h1 class="font-inter text-custom-dark text-3xl font-bold text-center mb-6 text-gray-500">Tech Quiz
+                Challenge!</h1>
             <div class="mb-4">
                 <label for="userName" class="block text-sm font-medium mb-1">Enter Your Name:</label>
                 <input type="text" id="userName" class="w-full p-2" placeholder="e.g., Lindiwe">
@@ -46,7 +51,9 @@
                 <select id="categorySelect" class="w-full p-2">
                 </select>
             </div>
-            <button id="startQuizBtn" class="btn btn-primary w-full">Start Quiz</button>
+            <button id="startQuizBtn"
+                class="transition-all duration-200 ease-in-outrounded-md py-3 px-6 font-semibold bg-custom-red text-white w-full rounded-lg p-4">Start
+                Quiz</button>
             <button id="viewLeaderboardBtn" class="btn btn-secondary w-full mt-3">View Leaderboard</button>
             <button id="toggleAdminViewBtn" class="btn btn-secondary w-full mt-3 text-sm">Admin Panel</button>
         </div>
