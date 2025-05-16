@@ -6,13 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Quiz App</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    backgroundColor: {
+                        'custom-light-blue': '#e5eefa',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
 </head>
 
-<body class="flex flex-col items-center justify-center min-h-screen p-4">
+<body class="bg-custom-light-blue flex flex-col items-center justify-center min-h-screen p-4 font-inter">
     <div id="app-container" class="quiz-container p-6 sm:p-8 w-full max-w-2xl">
         <div class="flex justify-center">
             <img id="logo" src="images.jpeg" alt="Quiz App Logo">
