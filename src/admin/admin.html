@@ -7,6 +7,121 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #e5eefa; 
+      color: #1b1c1d; 
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Inter', sans-serif;
+      color: #1b1c1d; 
+    }
+
+    .quiz-container {
+      background-color: #fff; 
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    }
+
+    .btn {
+      transition: all 0.2s ease-in-out;
+      border-radius: 0.375rem; 
+      padding: 0.75rem 1.5rem; 
+      font-weight: 600; 
+    }
+
+    .btn-primary {
+      background-color: #ec2309; 
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #d8362a; 
+    }
+
+    .btn-secondary {
+      background-color: #424a58; 
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: #2d3748; 
+    }
+
+    .btn-danger {
+      background-color: #f56565; 
+      color: white;
+    }
+    .btn-danger:hover {
+      background-color: #e53e3e; 
+    }
+
+    .btn-answer {
+      background-color: #4a5568; 
+      color: rgb(243, 233, 233);
+      width: 100%;
+      text-align: left;
+    }
+    .btn-answer:hover {
+      background-color: #2d3748; 
+    }
+    .btn-answer.correct {
+      background-color: #48bb78; 
+    }
+    .btn-answer.incorrect {
+      background-color: #f56565; 
+    }
+
+    .progress-bar-bg {
+      background-color: #939496;  
+    }
+
+    .progress-bar-fill {
+      background-color: #0c8341; 
+      transition: width 0.3s ease-in-out;
+      border-radius: 0.375rem;
+    }
+
+    input[type="text"], 
+    input[type="number"], 
+    select {
+      background-color: #e7eaee; 
+      border: 1px solid #4b4b50; 
+      color: #1d1e1f; 
+      border-radius: 0.375rem; 
+    }
+
+    #logo {
+      max-width: 70px;
+      height: auto;
+      margin-bottom: 1.5rem; 
+    }
+
+    .view { 
+      display: none; 
+    }
+    .active-view { 
+      display: block; 
+    }
+
+    .admin-section {
+      border-top: 1px solid #4a5568; 
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0.25rem;
+      border-bottom: 1px solid #374151; 
+    }
+    .leaderboard-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4">
   <div class="quiz-container p-6 sm:p-8 w-full max-w-2xl">
@@ -48,7 +163,7 @@
     </div>
 
     <p id="adminFeedback" class="text-sm text-center text-green-400 min-h-[20px]"></p>
-    <a href="index.html" class="btn btn-secondary w-full mt-6 text-center block">Back to User View</a>
+    <a href="../../index.html" class="btn btn-secondary w-full mt-6 text-center block">Back to User View</a>
   </div>
 
   <script src="admin.js" defer></script>
