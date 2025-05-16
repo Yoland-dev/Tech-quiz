@@ -16,7 +16,8 @@
                 extend: {
                     backgroundColor: {
                         'custom-light-blue': '#e5eefa',
-                        'custom-red': '#ec2309'
+                        'custom-red': '#ec2309',
+                        'custom-dark-gray': '#424a58',
                     },
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif'],
@@ -35,7 +36,7 @@
 
 <body
     class="text-custom-dark bg-custom-light-blue flex flex-col items-center justify-center min-h-screen p-4 font-inter">
-    <div id="app-container" class="quiz-container p-6 sm:p-8 w-full max-w-2xl">
+    <div id="app-container" class="shadow-custom rounded-lg bg-white p-6 sm:p-8 w-full max-w-2xl">
         <div class="flex justify-center">
             <img id="logo" src="images.jpeg" alt="Quiz App Logo">
         </div>
@@ -52,89 +53,12 @@
                 </select>
             </div>
             <button id="startQuizBtn"
-                class="transition-all duration-200 ease-in-outrounded-md py-3 px-6 font-semibold bg-custom-red text-white w-full rounded-lg p-4">Start
+                class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 font-semibold bg-custom-red text-white w-full rounded-lg p-4">Start
                 Quiz</button>
-            <button id="viewLeaderboardBtn" class="btn btn-secondary w-full mt-3">View Leaderboard</button>
-            <button id="toggleAdminViewBtn" class="btn btn-secondary w-full mt-3 text-sm">Admin Panel</button>
-        </div>
-
-        <div id="quiz-view" class="view">
-            <div class="flex justify-between items-center mb-4">
-                <div id="timerDisplay" class="text-lg font-semibold text-red-400">Time: 15s</div>
-                <div id="questionCounter" class="text-sm text-gray-400">Question 1/10</div>
-            </div>
-            <div class="progress-bar-bg w-full h-3 rounded-full mb-4">
-                <div id="progressBar" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
-            </div>
-            <h2 id="questionText" class="text-xl font-semibold mb-6 text-gray-500 text-center min-h-[60px]">Question
-                text will appear here...</h2>
-            <div id="answerOptions" class="space-y-3">
-            </div>
-            <p id="feedbackText" class="mt-4 text-center font-medium min-h-[24px]"></p>
-        </div>
-
-        <div id="score-view" class="view">
-            <h2 class="text-2xl font-bold text-center mb-4 text-gray-600">Quiz Completed!</h2>
-            <p id="userFinalScore" class="text-xl text-center mb-6">Your Score: 0 / 0</p>
-            <h3 class="text-lg font-semibold mb-3 text-center text-blue-300">Top Scores (Overall)</h3>
-            <ul id="highScoresListScoreView" class="space-y-1 text-center max-h-40 overflow-y-auto mb-6">
-            </ul>
-            <button id="playAgainBtn" class="btn btn-primary w-full mb-3">Play Again</button>
-            <button id="viewLeaderboardFromScoreBtn" class="btn btn-secondary w-full mb-3">View Full
+            <button id="viewLeaderboardBtn"
+                class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray w-full mt-3">View
                 Leaderboard</button>
-            <button id="backToHomeBtn" class="btn btn-secondary w-full">Back to Home</button>
+            <button id="toggleAdminViewBtn"
+                class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray w-full mt-3 text-sm">Admin
+                Panel</button>
         </div>
-
-        <div id="leaderboard-view" class="view">
-            <h2 class="text-2xl font-bold text-center mb-6 text-gray-600">🏆 Leaderboard 🏆</h2>
-            <ul id="leaderboardList" class="space-y-1 max-h-80 overflow-y-auto mb-6">
-            </ul>
-            <button id="backToHomeFromLeaderboardBtn" class="btn btn-primary w-full">Back to Home</button>
-        </div>
-
-        <div id="admin-view" class="view">
-            <h2 class="text-2xl font-bold text-center mb-6 text-gray-600">Admin Panel</h2>
-
-            <div class="admin-section">
-                <h3 class="text-lg font-semibold mb-3 text-blue-300">Quiz Configuration</h3>
-                <div class="mb-4">
-                    <label for="maxQuestionsConfig" class="block text-sm font-medium mb-1">Max Questions per
-                        Quiz:</label>
-                    <input type="number" id="maxQuestionsConfig" class="w-full p-2" min="1" value="15">
-                </div>
-            </div>
-            <div class="admin-section">
-                <h3 class="text-lg font-semibold mb-3 text-blue-300">Manage Categories & Questions</h3>
-                <div class="mb-2">
-                    <label for="adminCategorySelect" class="block text-sm font-medium mb-1">Category:</label>
-                    <div class="flex gap-2 mb-2">
-                        <select id="adminCategorySelect" class="w-full p-2">
-                        </select>
-                        <button id="removeCategoryBtn" class="btn btn-danger text-sm py-1 px-3">Remove Selected</button>
-                    </div>
-                    <input type="text" id="newCategoryName" class="w-full p-2 mb-2"
-                        placeholder="Or type new category name to add">
-                    <button id="addCategoryBtn" class="btn btn-secondary text-sm py-1 px-3">Add New Category</button>
-                </div>
-                <h4 class="text-md font-semibold mt-4 mb-2 text-blue-400">Add Question to Selected Category:</h4>
-                <div class="mb-2">
-                    <label for="questionTextAdmin" class="block text-sm font-medium mb-1">Question:</label>
-                    <input type="text" id="questionTextAdmin" class="w-full p-2" placeholder="Enter question text">
-                </div>
-                <div class="space-y-2 mb-2">
-                    <label class="block text-sm font-medium">Answer Options (Option 1 is correct):</label>
-                    <input type="text" id="option1Admin" class="w-full p-2 admin-option" placeholder="Correct Answer">
-                    <input type="text" id="option2Admin" class="w-full p-2 admin-option" placeholder="Option 2">
-                    <input type="text" id="option3Admin" class="w-full p-2 admin-option" placeholder="Option 3">
-                    <input type="text" id="option4Admin" class="w-full p-2 admin-option" placeholder="Option 4">
-                </div>
-                <button id="addQuestionBtn" class="btn btn-primary w-full mb-4">Add Question</button>
-            </div>
-            <p id="adminFeedback" class="text-sm text-center text-green-400 min-h-[20px]"></p>
-            <button id="backToUserViewBtn" class="btn btn-secondary w-full mt-6">Back to User View</button>
-        </div>
-    </div>
-    <script src="script.js" defer></script>
-</body>
-
-</html>
