@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    backgroundColor: {
+                        'custom-light-blue': '#e5eefa',
+                        'custom-red': '#ec2309',
+                        'custom-dark-gray': '#424a58',
+                        'custom-light-gray': '#e7eaee',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    borderColor: {
+                        'charcoal-gray': '#4b4b50'
+                    },
+                    textColor: {
+                        'custom-dark': '#1b1c1d',
+                        'custom-very-dark-gray': '#1d1e1f'
+                    },
+                    boxShadow: {
+                        'custom': '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="text-custom-dark bg-custom-light-blue flex flex-col items-center justify-center min-h-screen p-4 font-inter">
+    <div id="app-container" class="shadow-custom rounded-lg bg-white p-6 sm:p-8 w-full max-w-2xl">
+        <div class="flex justify-center">
+            <img id="logo" src="./images/bbd-logo.png" alt="Quiz App Logo">
+        </div>
+        <div id="setup-view" class="view active-view">
+            <h1 class="font-inter text-custom-dark text-3xl font-bold text-center mb-6 text-gray-500">Tech Quiz
+                Challenge!</h1>
+            <div class="mb-4">
+                <label for="userName" class="block text-sm font-medium mb-1">Enter Your Name:</label>
+                <input type="text" id="userName"
+                    class="w-full p-2 text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+                    placeholder="e.g., Lindiwe">
+            </div>
+            <div class="mb-6">
+                <label for="categorySelect" class="block text-sm font-medium mb-1">Choose a Category:</label>
+                <select id="categorySelect" class="w-full p-2 text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md">
+                </select>
+            </div>
+            <button id="startQuizBtn"
+                class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 font-semibold bg-custom-red hover:bg-red-500 text-white w-full rounded-lg p-4">Start
+                Quiz</button>
+            <button id="viewLeaderboardBtn"
+                class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray hover:bg-gray-600 w-full mt-3">View
+                Leaderboard</button>
+            <button id="toggleAdminViewBtn"
+                class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray hover:bg-gray-600 w-full mt-3 text-sm">Admin
+                Panel</button>
+        </div>

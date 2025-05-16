@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tech Quiz Leaderboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50">
+  <div class="quiz-container p-6 sm:p-8 w-full max-w-2xl bg-white rounded shadow-md">
+    <div class="flex justify-center mb-6">
+      <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeTACgyHOGD5slVJTApKmjboQ8C2ObG_WIfg&s" alt="Quiz App Logo" class="h-12" />
+    </div>
+
+    <h2 class="text-2xl font-bold text-center mb-6 text-gray-600">🏆 Leaderboard 🏆</h2>
+
+    <ul id="leaderboardList" class="space-y-2 max-h-80 overflow-y-auto mb-6 text-gray-700 font-medium">
+      <!-- Dynamic leaderboard entries go here -->
+    </ul>
+
+    <button id="backToHomeBtn" class="btn btn-primary w-full bg-red-600 text-white py-3 rounded hover:bg-red-700 transition">
+      Back to Home
+    </button>
+  </div>
+
+  <script src="leaderboard.js" defer></script>
+</body>
+</html>
