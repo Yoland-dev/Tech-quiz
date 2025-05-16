@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - Tech Quiz App</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+  <div class="quiz-container p-6 sm:p-8 w-full max-w-2xl">
+    <h2 class="text-2xl font-bold text-center mb-6 text-gray-600">Admin Panel</h2>
+
+    <div class="admin-section">
+      <h3 class="text-lg font-semibold mb-3 text-blue-300">Quiz Configuration</h3>
+      <div class="mb-4">
+        <label for="maxQuestionsConfig" class="block text-sm font-medium mb-1">Max Questions per Quiz:</label>
+        <input type="number" id="maxQuestionsConfig" class="w-full p-2" min="1" value="15" />
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <h3 class="text-lg font-semibold mb-3 text-blue-300">Manage Categories & Questions</h3>
+      <div class="mb-2">
+        <label for="adminCategorySelect" class="block text-sm font-medium mb-1">Category:</label>
+        <div class="flex gap-2 mb-2">
+          <select id="adminCategorySelect" class="w-full p-2"></select>
+          <button id="removeCategoryBtn" class="btn btn-danger text-sm py-1 px-3">Remove Selected</button>
+        </div>
+        <input type="text" id="newCategoryName" class="w-full p-2 mb-2" placeholder="Or type new category name to add" />
+        <button id="addCategoryBtn" class="btn btn-secondary text-sm py-1 px-3">Add New Category</button>
+      </div>
+
+      <h4 class="text-md font-semibold mt-4 mb-2 text-blue-400">Add Question to Selected Category:</h4>
+      <div class="mb-2">
+        <label for="questionTextAdmin" class="block text-sm font-medium mb-1">Question:</label>
+        <input type="text" id="questionTextAdmin" class="w-full p-2" placeholder="Enter question text" />
+      </div>
+      <div class="space-y-2 mb-2">
+        <label class="block text-sm font-medium">Answer Options (Option 1 is correct):</label>
+        <input type="text" id="option1Admin" class="w-full p-2 admin-option" placeholder="Correct Answer" />
+        <input type="text" id="option2Admin" class="w-full p-2 admin-option" placeholder="Option 2" />
+        <input type="text" id="option3Admin" class="w-full p-2 admin-option" placeholder="Option 3" />
+        <input type="text" id="option4Admin" class="w-full p-2 admin-option" placeholder="Option 4" />
+      </div>
+      <button id="addQuestionBtn" class="btn btn-primary w-full mb-4">Add Question</button>
+    </div>
+
+    <p id="adminFeedback" class="text-sm text-center text-green-400 min-h-[20px]"></p>
+    <a href="index.html" class="btn btn-secondary w-full mt-6 text-center block">Back to User View</a>
+  </div>
+
+  <script src="admin.js" defer></script>
+</body>
+</html>
