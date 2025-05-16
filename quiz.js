@@ -1,4 +1,4 @@
-const category = "JavaScript Basics"; // change this to any valid category name
+const category = "JavaScript Basics";
 const NUM_QUESTIONS = 10;
 let quizData = [];
 let currentQuestionIndex = 0;
