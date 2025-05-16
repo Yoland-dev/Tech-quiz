@@ -4,50 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tech Quiz Challenge</title>
-  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="container">
-    <div class="logo">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeTACgyHOGD5slVJTApKmjboQ8C2ObG_WIfg&s" alt="Tech Quiz Logo" width="80" height="80">
+<body class="bg-gray-100 font-sans">
+  <div class="max-w-2xl mx-auto p-5 text-center">
+    <div class="flex justify-center mb-5">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeTACgyHOGD5slVJTApKmjboQ8C2ObG_WIfg&s" alt="Tech Quiz Logo" class="w-20 h-20">
     </div>
-    
-    <h1>Tech Quiz Challenge!</h1>
-    
+   
+    <h1 class="text-3xl font-bold mb-8 text-gray-600">Tech Quiz Challenge!</h1>
+   
     <div class="quiz-setup">
-      <div class="form-group">
-        <label for="username">Enter Your Name:</label>
-        <input type="text" id="username" placeholder="Enter your name">
+      <div class="mb-5 text-left">
+        <label for="username" class="block mb-2 font-bold">Enter Your Name:</label>
+        <input type="text" id="username" placeholder="Enter your name" class="w-full p-3 border border-gray-300 rounded bg-gray-50 text-base">
       </div>
-      
-      <div class="form-group">
-        <label for="categorySelect">Choose a Category:</label>
-        <select id="categorySelect">
+     
+      <div class="mb-5 text-left">
+        <label for="categorySelect" class="block mb-2 font-bold">Choose a Category:</label>
+        <select id="categorySelect" class="w-full p-3 border border-gray-300 rounded bg-gray-50 text-base">
           <option value="JavaScript Basics">JavaScript Basics</option>
           <option value="HTML Fundamentals">HTML Fundamentals</option>
           <option value="CSS Flexbox">CSS Flexbox</option>
-          <option value="CSS Flexbox">CSS Grid</option>
+          <option value="CSS Grid">CSS Grid</option>
         </select>
       </div>
-      
-      <button id="startQuiz" class="btn btn-primary">Start Quiz</button>
-      
-      <button id="viewLeaderboard" class="btn btn-secondary">View Leaderboard</button>
-      
-      <button id="adminPanel" class="btn btn-secondary">Admin Panel</button>
+     
+      <button id="startQuiz" class="w-full py-4 px-4 mb-3 bg-red-600 text-white font-bold rounded hover:bg-red-700 transition duration-300">Start Quiz</button>
+     
+      <button id="viewLeaderboard" class="w-full py-4 px-4 mb-3 bg-gray-600 text-white font-bold rounded hover:bg-gray-700 transition duration-300">View Leaderboard</button>
+     
+      <button id="adminPanel" class="w-full py-4 px-4 bg-gray-600 text-white font-bold rounded hover:bg-gray-700 transition duration-300">Admin Panel</button>
     </div>
   </div>
-  
+ 
   <script>
     // Placeholder for JavaScript functionality
     document.getElementById('startQuiz').addEventListener('click', function() {
       alert('Quiz would start here!');
     });
-    
+   
     document.getElementById('viewLeaderboard').addEventListener('click', function() {
       alert('Leaderboard would display here!');
     });
-    
+   
     document.getElementById('adminPanel').addEventListener('click', function() {
       alert('Admin panel would open here!');
     });
