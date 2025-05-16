@@ -1,7 +1,7 @@
 const userNameInput = document.getElementById("userName");
 const categorySelect = document.getElementById("categorySelect");
 const startQuizBtn = document.getElementById("startQuizBtn");
-const toggleAdminViewBtn = document.getElementById("toggleAdminViewBtn");
+const adminViewBtn = document.getElementById("adminViewBtn");
 const viewLeaderboardBtn = document.getElementById("viewLeaderboardBtn");
 const missingName = document.getElementById("missing-name");
 const missingCategory = document.getElementById("missing-category");
@@ -45,7 +45,7 @@ startQuizBtn.addEventListener("click", () => {
   }
 
   if (selectedCategory === "") {
-        missingCategory.style.display = "block";
+    missingCategory.style.display = "block";
     missingCategory.style.color = "red";
     missingCategory.style.fontSize = "18px";
     missingCategory.style.textAlign = "center";
@@ -55,8 +55,18 @@ startQuizBtn.addEventListener("click", () => {
   } else {
     missingCategory.style.display = "none";
   }
-userNameInput.value = "";
+  userNameInput.value = "";
   window.location.href = `quiz.html?category=${selectedCategory}&userName=${encodeURIComponent(
     userName
   )}`;
 });
+
+viewLeaderboardBtn.addEventListener(
+  "click",
+  () => (window.location.href = "leaderboard.html")
+);
+
+adminViewBtn.addEventListener(
+  "click",
+  () => (window.location.href = "admin.html")
+);
