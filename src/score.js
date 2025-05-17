@@ -9,12 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const playAgainBtn = document.getElementById("playAgainBtn");
   const backToHomeBtn = document.getElementById("backToHomeBtn");
+  const encodedName = encodeURIComponent(userName);
 
   playAgainBtn.addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = `index.html?userName=${encodedName}`;
   });
 
   backToHomeBtn.addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = `index.html?userName=${encodedName}`;
   });
 });
