@@ -75,6 +75,8 @@ function resetTimer() {
 let correctAnswersCount = 0;
 
 function handleAnswer(selected, correct, timeUp = false) {
+  if (currentQuestionIndex >= quizData.length) return;
+
   resetTimer();
 
   const feedback = document.getElementById("feedbackText");
