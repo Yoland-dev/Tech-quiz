@@ -431,6 +431,29 @@ function handleQuestionSearch() {
     displayQuestionSearchResults(matchedQuestions, selectedCategory);
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const numQuestionsInput = document.getElementById("numQuestions");
+    const maxQuestionsDisplay = document.getElementById("maxQuestions");
+
+    const MAX_QUESTIONS = 30; // ideally, we should update it when new questions have been added.
+    maxQuestionsDisplay.textContent = MAX_QUESTIONS;
+
+    const saved = parseInt(localStorage.getItem("numQuestions"));
+    if (!isNaN(saved)) {
+      numQuestionsInput.value = saved;
+    }
+
+    document.getElementById("saveSettings").addEventListener("click", () => {
+      const num = parseInt(numQuestionsInput.value);
+      if (!isNaN(num) && num > 0 && num <= MAX_QUESTIONS) {
+        localStorage.setItem("numQuestions", num);
+        alert("✅ Settings saved!");
+      } else {
+        alert(`❌ Please enter a number between 1 and ${MAX_QUESTIONS}`);
+      }
+    });
+  });
+
 document.addEventListener('DOMContentLoaded', async () => {
     await loadData(); 
 
