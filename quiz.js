@@ -1,5 +1,8 @@
-const category = "JavaScript Basics";
-const NUM_QUESTIONS = 10;
+const urlParams = new URLSearchParams(window.location.search);
+const selectedCategory = urlParams.get('category');
+const userName = urlParams.get('userName');
+
+const NUM_QUESTIONS = 10; 
 let quizData = [];
 let currentQuestionIndex = 0;
 
@@ -7,8 +10,14 @@ async function loadQuestions() {
   try {
     const res = await fetch("src/data.json");
     const data = await res.json();
-    const categoryQuestions = data.categories[category];
+
+    if (!data.categories[selectedCategory]) {
+      throw new Error(`Category "${selectedCategory}" not found in data.json`);
+    }
+
+    const categoryQuestions = data.categories[selectedCategory];
     quizData = shuffleArray(categoryQuestions).slice(0, NUM_QUESTIONS);
+    currentQuestionIndex = 0;
     showQuestion();
   } catch (err) {
     document.getElementById("questionText").textContent = "⚠️ Failed to load quiz data.";
