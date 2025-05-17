@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - Tech Quiz App</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #e5eefa; 
+      color: #1b1c1d; 
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Inter', sans-serif;
+      color: #1b1c1d; 
+    }
+
+    .quiz-container {
+      background-color: #fff; 
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    }
+
+    .btn {
+      transition: all 0.2s ease-in-out;
+      border-radius: 0.375rem; 
+      padding: 0.75rem 1.5rem; 
+      font-weight: 600; 
+    }
+
+    .btn-primary {
+      background-color: #ec2309; 
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #d8362a; 
+    }
+
+    .btn-secondary {
+      background-color: #424a58; 
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: #2d3748; 
+    }
+
+    .btn-danger {
+      background-color: #f56565; 
+      color: white;
+    }
+    .btn-danger:hover {
+      background-color: #e53e3e; 
+    }
+
+    .btn-answer {
+      background-color: #4a5568; 
+      color: rgb(243, 233, 233);
+      width: 100%;
+      text-align: left;
+    }
+    .btn-answer:hover {
+      background-color: #2d3748; 
+    }
+    .btn-answer.correct {
+      background-color: #48bb78; 
+    }
+    .btn-answer.incorrect {
+      background-color: #f56565; 
+    }
+
+    .progress-bar-bg {
+      background-color: #939496;  
+    }
+
+    .progress-bar-fill {
+      background-color: #0c8341; 
+      transition: width 0.3s ease-in-out;
+      border-radius: 0.375rem;
+    }
+
+    input[type="text"], 
+    input[type="number"], 
+    select {
+      background-color: #e7eaee; 
+      border: 1px solid #4b4b50; 
+      color: #1d1e1f; 
+      border-radius: 0.375rem; 
+    }
+
+    #logo {
+      max-width: 70px;
+      height: auto;
+      margin-bottom: 1.5rem; 
+    }
+
+    .view { 
+      display: none; 
+    }
+    .active-view { 
+      display: block; 
+    }
+
+    .admin-section {
+      border-top: 1px solid #4a5568; 
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0.25rem;
+      border-bottom: 1px solid #374151; 
+    }
+    .leaderboard-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+  <div class="quiz-container p-6 sm:p-8 w-full max-w-2xl">
+    <div class="flex justify-center">
+      <img id="logo" src="../../images/bbd-logo.png" alt="Quiz App Logo">
+  </div>
+    <h2 class="text-2xl font-bold text-center mb-6 text-gray-600">Admin Panel</h2>
+
+    <div class="admin-section">
+      <h3 class="text-lg font-semibold mb-3 text-blue-300">Quiz Configuration</h3>
+      <div class="mb-4">
+        <label for="maxQuestionsConfig" class="block text-sm font-medium mb-1">Max Questions per Quiz:</label>
+        <input type="number" id="maxQuestionsConfig" class="w-full p-2" min="1" value="15" />
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <h3 class="text-lg font-semibold mb-3 text-blue-300">Manage Categories & Questions</h3>
+      <div class="mb-2">
+        <label for="adminCategorySelect" class="block text-sm font-medium mb-1">Category:</label>
+        <div class="flex gap-2 mb-2">
+          <select id="adminCategorySelect" class="w-full p-2"></select>
+          <button id="removeCategoryBtn" class="btn btn-danger text-sm py-1 px-3">Remove Selected</button>
+        </div>
+        <input type="text" id="newCategoryName" class="w-full p-2 mb-2" placeholder="Or type here to add new category name" />
+        <button id="addCategoryBtn" class="btn btn-secondary text-sm py-1 px-3">Add New Category</button>
+      </div>
+
+      <h4 class="text-md font-semibold mt-4 mb-2 text-blue-400">Add Question to Selected Category:</h4>
+      <div class="mb-2">
+        <label for="questionTextAdmin" class="block text-sm font-medium mb-1">Question:</label>
+        <input type="text" id="questionTextAdmin" class="w-full p-2" placeholder="Enter question text" />
+      </div>
+      <div class="space-y-2 mb-2">
+        <label class="block text-sm font-medium">Answer Options (Option 1 is correct):</label>
+        <input type="text" id="option1Admin" class="w-full p-2 admin-option" placeholder="Correct Answer" />
+        <input type="text" id="option2Admin" class="w-full p-2 admin-option" placeholder="Option 2" />
+        <input type="text" id="option3Admin" class="w-full p-2 admin-option" placeholder="Option 3" />
+        <input type="text" id="option4Admin" class="w-full p-2 admin-option" placeholder="Option 4" />
+      </div>
+      <button id="addQuestionBtn" class="btn btn-primary w-full mb-4">Add Question</button>
+    </div>
+
+    <p id="adminFeedback" class="text-sm text-center text-green-400 min-h-[20px]"></p>
+
+    <a href="../../index.html" class="btn btn-secondary w-full mt-6 text-center block">Back to User View</a>
+
+  </div>
+
+  <script src="admin.js" defer></script>
+</body>
+</html>
