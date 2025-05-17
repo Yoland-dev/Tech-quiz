@@ -5,6 +5,8 @@ const userName = urlParams.get('userName');
 const NUM_QUESTIONS = 10; 
 let quizData = [];
 let currentQuestionIndex = 0;
+const QUESTION_TIME = 15;
+let timerInterval;        
 
 async function loadQuestions() {
   try {
@@ -45,11 +47,40 @@ function showQuestion() {
   });
 
   document.getElementById("feedbackText").textContent = "";
+
+  resetTimer();
+  startTimer();
 }
 
-function handleAnswer(selected, correct) {
+function startTimer() {
+  const timerDisplay = document.getElementById("timerDisplay");
+  timeLeft = QUESTION_TIME;
+  timerDisplay.textContent = `Time: ${timeLeft}s`;
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timerDisplay.textContent = `Time: ${timeLeft}s`;
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      handleAnswer(null, quizData[currentQuestionIndex].answer, true); // Auto-submit
+    }
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+}
+
+function handleAnswer(selected, correct, timeUp = false) {
+  resetTimer();
+
   const feedback = document.getElementById("feedbackText");
-  if (selected === correct) {
+  if (timeUp) {
+    feedback.textContent = `⏰ Time's up! Correct answer: ${correct}`;
+    feedback.classList.remove("text-green-500");
+    feedback.classList.add("text-red-500");
+  } else if (selected === correct) {
     feedback.textContent = "✅ Correct!";
     feedback.classList.remove("text-red-500");
     feedback.classList.add("text-green-500");
@@ -68,9 +99,11 @@ function handleAnswer(selected, correct) {
       document.getElementById("answerOptions").innerHTML = "";
       document.getElementById("feedbackText").textContent = "";
       document.getElementById("questionCounter").textContent = "";
+      document.getElementById("timerDisplay").textContent = "";
     }
   }, 1500);
 }
+
 
 function shuffleArray(arr) {
   return arr.sort(() => Math.random() - 0.5);
