@@ -38,7 +38,9 @@ function showQuestion() {
   const answerOptionsDiv = document.getElementById("answerOptions");
   answerOptionsDiv.innerHTML = "";
 
-  q.options.forEach(option => {
+  const shuffledOptions = shuffleArray([...q.options]);
+
+  shuffledOptions.forEach(option => {
     const btn = document.createElement("button");
     btn.textContent = option;
     btn.className = "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-blue-100 transition duration-200";
@@ -97,13 +99,13 @@ function handleAnswer(selected, correct, timeUp = false) {
 
   setTimeout(() => {
     currentQuestionIndex++;
-    if (currentQuestionIndex < quizData.length) {
-      showQuestion();
-    } else {
-      const score = calculateScore();
-      const total = quizData.length;
-      window.location.href = `score.html?userName=${encodeURIComponent(userName)}&score=${score}&total=${total}`;
-    }
+   if (currentQuestionIndex < quizData.length) {
+  showQuestion();
+} else {
+  const score = calculateScore();
+  const total = quizData.length;
+  window.location.href = `score.html?userName=${encodeURIComponent(userName)}&score=${score}&total=${total}`;
+}
   }, 1500);
 }
 
