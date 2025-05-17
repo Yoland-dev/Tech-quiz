@@ -70,3 +70,15 @@ adminViewBtn.addEventListener(
   "click",
   () => (window.location.href = "admin.html")
 );
+
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const nameFromURL = urlParams.get("userName");
+
+  if (nameFromURL) {
+    const nameInput = document.getElementById("userName");
+    if (nameInput) {
+      nameInput.value = nameFromURL;
+    }
+  }
+});
