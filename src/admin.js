@@ -1,6 +1,3 @@
-
-
-
 const maxQuestionsConfigInput = document.getElementById('maxQuestionsConfig');
 const adminCategorySelect = document.getElementById('adminCategorySelect');
 const newCategoryNameInput = document.getElementById('newCategoryName');
