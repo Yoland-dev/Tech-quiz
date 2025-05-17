@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const selectedCategory = urlParams.get('category');
 const userName = urlParams.get('userName');
 
-const NUM_QUESTIONS = 10;
+const NUM_QUESTIONS = parseInt(localStorage.getItem("numQuestions")) || 10;
 let quizData = [];
 let currentQuestionIndex = 0;
 const QUESTION_TIME = 15;
