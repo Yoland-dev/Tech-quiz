@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Tech Quiz App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            backgroundColor: {
+              "custom-light-blue": "#e5eefa",
+              "custom-red": "#ec2309",
+              "custom-dark-gray": "#424a58",
+              "custom-light-gray": "#e7eaee",
+              "custom-saturated-red": "#f56565",
+            },
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+            borderColor: {
+              "charcoal-gray": "#4b4b50",
+              "dark-blue-gray": "#4a5568",
+              "steel-blue": "#4a5568",
+            },
+            textColor: {
+              "custom-dark": "#1b1c1d",
+              "custom-very-dark-gray": "#1d1e1f",
+            },
+            boxShadow: {
+              custom:
+                "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body
+    class="text-custom-dark bg-custom-light-blue font-inter flex flex-col items-center justify-center min-h-screen p-4"
+  >
+    <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-2xl">
+      <div class="flex justify-center">
+        <img
+          id="logo"
+          src="https://i.postimg.cc/YSKJ5xzX/bbd-logo.png"
+          alt="Quiz App Logo"
+          class="max-w-[70px] mb-6"
+        />
+      </div>
+      <h2
+        class="font-inter text-custom-dark text-2xl font-bold text-center mb-6"
+      >
+        Admin Panel
+      </h2>
+
+      <div class="border-t border-dark-blue-gray mt-8 pt-6">
+        <h3 class="font-inter text-custom-dark text-lg font-semibold mb-3">
+          Quiz Configuration
+        </h3>
+        <div class="mb-4">
+          <label for="maxQuestionsConfig" class="block text-sm font-medium mb-1"
+            >Max Questions per Quiz:</label
+          >
+          <input
+            type="number"
+            id="maxQuestionsConfig"
+            class="w-full p-2 text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+            min="1"
+            value="15"
+          />
+          <h2 class="font-semibold text-lg mt-4">Quiz Configuration</h2>
+          <p class="text-sm">
+            Max Questions per Quiz:
+            <span id="maxQuestions" class="font-mono">--</span>
+          </p>
+          <input
+            type="number"
+            id="numQuestions"
+            placeholder="Number of Questions"
+            class="border p-2 text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+          />
+          <button
+            id="saveSettings"
+            class="ml-2 bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Save Settings
+          </button>
+        </div>
+      </div>
+
+      <div class="border-t border-dark-blue-gray mt-8 pt-6">
+        <h3 class="text-lg font-semibold mb-3">
+          Manage Categories & Questions
+        </h3>
+        <div class="mb-2">
+          <label
+            for="adminCategorySelect"
+            class="block text-sm font-medium mb-1"
+            >Category:</label
+          >
+          <div class="flex gap-2 mb-2">
+            <select
+              id="adminCategorySelect"
+              class="w-full p-2 text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+            ></select>
+            <button
+              id="removeCategoryBtn"
+              class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 bg-custom-saturated-red text-sm py-1 px-3"
+            >
+              Remove Selected
+            </button>
+          </div>
+          <input
+            type="text"
+            id="newCategoryName"
+            class="w-full p-2 mb-2 text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+            placeholder="Or type here to add new category name"
+          />
+          <button
+            id="addCategoryBtn"
+            class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray hover:bg-gray-600 text-sm py-1 px-3"
+          >
+            Add New Category
+          </button>
+        </div>
+
+        <hr class="my-4 border-gray-300" />
+
+        <div>
+          <label
+            for="searchQuestionInputAdmin"
+            class="block text-sm font-medium mb-1"
+            >Search/Manage Question in Selected Category:</label
+          >
+          <input
+            type="text"
+            id="searchQuestionInputAdmin"
+            class="w-full p-2 mb-2 text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+            placeholder="Type question text to find..."
+          />
+        </div>
+
+        <div
+          id="questionSearchResults"
+          class="mb-4 min-h-[50px] max-h-48 overflow-y-auto border border-gray-200 rounded-md p-2 bg-gray-50"
+        >
+          <p id="searchHelperText" class="text-sm text-gray-500 italic">
+            Select a category and type to search for questions.
+          </p>
+        </div>
+
+        <h4 id="formActionTitle" class="text-md font-semibold mt-4 mb-2">
+          Add New Question:
+        </h4>
+        <div id="questionFormContainer">
+          <div class="mb-2">
+            <label
+              for="questionTextAdmin"
+              class="block text-sm font-medium mb-1"
+              >Question Text:</label
+            >
+            <input
+              type="text"
+              id="questionTextAdmin"
+              class="w-full p-2 text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+              placeholder="Enter question text"
+            />
+          </div>
+          <div class="space-y-2 mb-2">
+            <label class="block text-sm font-medium"
+              >Answer Options (Option 1 is correct):</label
+            >
+            <input
+              type="text"
+              id="option1Admin"
+              class="w-full p-2 mt-8 border-2 border-steel-blue text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+              placeholder="Correct Answer"
+            />
+            <input
+              type="text"
+              id="option2Admin"
+              class="w-full p-2 mt-8 border-2 border-steel-blue text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+              placeholder="Option 2"
+            />
+            <input
+              type="text"
+              id="option3Admin"
+              class="w-full p-2 mt-8 border-2 border-steel-blue text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+              placeholder="Option 3"
+            />
+            <input
+              type="text"
+              id="option4Admin"
+              class="w-full p-2 mt-8 border-2 border-steel-blue text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+              placeholder="Option 4"
+            />
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <button
+              id="addOrUpdateQuestionBtn"
+              class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 font-semibold bg-custom-red hover:bg-red-500 text-white rounded-lg w-full sm:flex-1"
+            >
+              Add Question
+            </button>
+            <button
+              id="deleteLoadedQuestionBtn"
+              class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 bg-custom-saturated-red w-full sm:flex-1"
+              style="display: none"
+            >
+              Delete This Question
+            </button>
+          </div>
+          <button
+            id="clearQuestionFormBtn"
+            class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray hover:bg-gray-600 w-full mt-2"
+            style="display: none"
+          >
+            Cancel Edit / Clear Form
+          </button>
+        </div>
+      </div>
+
+      <a
+        href="index.html"
+        class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 text-white bg-custom-dark-gray hover:bg-gray-600 w-full mt-6 text-center block"
+        >Back to Home</a
+      >
+    </div>
+    <script src="src/admin.js" defer></script>
+  </body>
+</html>
