@@ -1,0 +1,23 @@
+function addScore(name, score) {
+  leaderboard.push({ name, score });
+  leaderboard.sort((a, b) => b.score - a.score);
+  updateLeaderboard();
+}
+
+function updateLeaderboard() {
+  const leaderboardBody = document.getElementById("leaderboard-body");
+  leaderboardBody.innerHTML = "";
+
+  leaderboard.forEach((entry, index) => {
+    const row = document.createElement("tr");
+    row.classList.add(index % 2 === 0 ? "bg-white" : "bg-gray-100");
+
+    row.innerHTML = `
+      <td class="border border-gray-400 px-4 py-2">${index + 1}</td>
+      <td class="border border-gray-400 px-4 py-2">${entry.name}</td>
+      <td class="border border-gray-400 px-4 py-2">${entry.score}</td>
+    `;
+
+    leaderboardBody.appendChild(row);
+  });
+}
