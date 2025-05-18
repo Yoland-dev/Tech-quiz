@@ -1,21 +1,26 @@
 const urlParams = new URLSearchParams(window.location.search);
 const selectedCategory = urlParams.get("category");
-const userName = urlParams.get("userName");
+const userName = urlParams.get("userName") || "Guest";
 
 const NUM_QUESTIONS = parseInt(localStorage.getItem("numQuestions")) || 10;
-let quizData = [];
+let quizData = []; 
 let currentQuestionIndex = 0;
-const QUESTION_TIME = 15;
-let timerInterval;
+const QUESTION_TIME = 15; 
+let timerInterval; 
 let correctAnswersCount = 0;
-const scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+const quizViewElement = document.getElementById("quiz-view");
+const questionTextElement = document.getElementById("questionText");
+const questionCounterElement = document.getElementById("questionCounter");
+const progressBarElement = document.getElementById("progressBar");
+const answerOptionsDiv = document.getElementById("answerOptions");
+const timerDisplayElement = document.getElementById("timerDisplay");
 
 function widenQuizContainer() {
-    const quizViewElement = document.getElementById("quiz-view");
-    if (quizViewElement) {
-        quizViewElement.classList.remove("max-w-xl"); 
-        quizViewElement.classList.add("max-w-3xl");   
-    }
+  if (quizViewElement) {
+    quizViewElement.classList.remove("max-w-xl");
+    quizViewElement.classList.add("max-w-3xl");
+  }
 }
 
 async function loadQuestions() {
@@ -23,65 +28,79 @@ async function loadQuestions() {
     widenQuizContainer();
 
     const res = await fetch("src/data.json");
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
     const data = await res.json();
 
-    if (!data.categories[selectedCategory]) {
-      throw new Error(`Category "${selectedCategory}" not found in data.json`);
+    if (!data.categories || !data.categories[selectedCategory]) {
+      throw new Error(
+        `Category "${selectedCategory}" not found in data.json or data.json is not structured as expected.`
+      );
     }
 
     const categoryQuestions = data.categories[selectedCategory];
-    quizData = shuffleArray(categoryQuestions).slice(0, NUM_QUESTIONS);
+    quizData = shuffleArray(categoryQuestions).slice(0, NUM_QUESTIONS); 
     currentQuestionIndex = 0;
+    correctAnswersCount = 0; 
     showQuestion();
   } catch (err) {
-    document.getElementById("questionText").textContent =
-      "⚠️ Failed to load quiz data.";
-    console.error(err);
+    if (questionTextElement) {
+        questionTextElement.textContent = "⚠️ Failed to load quiz data. Please check the category or data source.";
+    }
+    console.error("Error loading questions:", err);
   }
 }
 
 function showQuestion() {
+  if (currentQuestionIndex >= quizData.length) {
+    console.error("showQuestion called out of bounds");
+    return;
+  }
+
   const q = quizData[currentQuestionIndex];
   const total = quizData.length;
 
-  document.getElementById("questionText").textContent = q.question;
-  document.getElementById("questionCounter").textContent = `Question ${
-    currentQuestionIndex + 1
-  }/${total}`;
-  document.getElementById("progressBar").style.width = `${
-    ((currentQuestionIndex + 1) / total) * 100
-  }%`;
+  if (questionTextElement) questionTextElement.textContent = q.question;
+  if (questionCounterElement) {
+    questionCounterElement.textContent = `Question ${currentQuestionIndex + 1}/${total}`;
+  }
+  if (progressBarElement) {
+    progressBarElement.style.width = `${((currentQuestionIndex + 1) / total) * 100}%`;
+  }
 
-  const answerOptionsDiv = document.getElementById("answerOptions");
-  answerOptionsDiv.innerHTML = ""; 
+  if (answerOptionsDiv) {
+    answerOptionsDiv.innerHTML = ""; 
 
-  const shuffledOptions = shuffleArray([...q.options]);
+    const shuffledOptions = shuffleArray([...q.options]);
 
-  shuffledOptions.forEach((option) => {
-    const btn = document.createElement("button");
-    btn.textContent = option;
-    btn.className =
-      "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-blue-100 transition duration-200 text-gray-700"; // Added text-gray-700 for better contrast on white
-    btn.onclick = () => handleAnswer(option, q.answer);
-    answerOptionsDiv.appendChild(btn);
-  });
+    shuffledOptions.forEach((option) => {
+      const btn = document.createElement("button");
+      btn.textContent = option;
+      btn.className =
+        "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-blue-100 transition duration-200 text-gray-700";
+      btn.onclick = () => handleAnswer(option, q.answer);
+      answerOptionsDiv.appendChild(btn);
+    });
+  }
 
   resetTimer();
   startTimer();
 }
 
 function startTimer() {
-  const timerDisplay = document.getElementById("timerDisplay");
-  timeLeft = QUESTION_TIME;
-  timerDisplay.textContent = `Time: ${timeLeft}s`;
+  if (!timerDisplayElement) return;
+
+  let timeLeft = QUESTION_TIME;
+  timerDisplayElement.textContent = `Time: ${timeLeft}s`;
 
   timerInterval = setInterval(() => {
     timeLeft--;
-    timerDisplay.textContent = `Time: ${timeLeft}s`;
+    timerDisplayElement.textContent = `Time: ${timeLeft}s`;
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      handleAnswer(null, quizData[currentQuestionIndex].answer, true);
+      handleAnswer(null, quizData[currentQuestionIndex].answer, true); 
     }
   }, 1000);
 }
@@ -89,16 +108,15 @@ function startTimer() {
 function resetTimer() {
   clearInterval(timerInterval);
 }
-
 function handleAnswer(selectedOptionText, correctAnswerText, timeUp = false) {
-  if (currentQuestionIndex >= quizData.length) return;
+  if (currentQuestionIndex >= quizData.length) return; 
 
   resetTimer();
 
-  const answerButtons = document.getElementById("answerOptions").querySelectorAll('button');
-  answerButtons.forEach(btn => {
+  const answerButtons = answerOptionsDiv ? answerOptionsDiv.querySelectorAll("button") : [];
+  answerButtons.forEach((btn) => {
     btn.disabled = true;
-    btn.classList.remove("hover:bg-blue-100"); 
+    btn.classList.remove("hover:bg-blue-100");
   });
 
   let userWasCorrect = false;
@@ -107,50 +125,86 @@ function handleAnswer(selectedOptionText, correctAnswerText, timeUp = false) {
     correctAnswersCount++;
   }
 
-  answerButtons.forEach(btn => {
+  answerButtons.forEach((btn) => {
     const optionTextOfButton = btn.textContent;
+    btn.classList.remove("bg-white", "border-gray-300", "text-gray-700"); 
 
     if (optionTextOfButton === correctAnswerText) {
-      btn.classList.remove("bg-white", "border-gray-300", "text-gray-700");
-      btn.classList.add("bg-green-500", "text-white", "border-green-600");
+      btn.classList.add("bg-green-500", "text-white", "border-green-600"); 
+    } else if (!timeUp && optionTextOfButton === selectedOptionText) {
+      btn.classList.add("bg-red-500", "text-white", "border-red-600"); 
+    } else {
+        btn.classList.add("bg-gray-100", "text-gray-500", "border-gray-200");
     }
-    else if (!timeUp && optionTextOfButton === selectedOptionText) {
-      btn.classList.remove("bg-white", "border-gray-300", "text-gray-700");
-      btn.classList.add("bg-red-500", "text-white", "border-red-600");
-    }
-  
   });
-
 
   setTimeout(() => {
     currentQuestionIndex++;
     if (currentQuestionIndex < quizData.length) {
       showQuestion();
     } else {
-      const score = calculateScore();
-      const total = quizData.length;
+      const finalScore = correctAnswersCount;
+      const totalQuestions = quizData.length;
+      const percentage = totalQuestions > 0 ? Math.round((finalScore / totalQuestions) * 100) : 0;
 
-      const userGameInfo = {
-        userName,
-        score,
-        total,
+      let interactiveQuizData;
+      const storedDataString = localStorage.getItem('interactiveQuizData');
+
+      if (storedDataString) {
+        try {
+          interactiveQuizData = JSON.parse(storedDataString);
+          if (!interactiveQuizData || !Array.isArray(interactiveQuizData.highScores)) {
+            console.warn("Leaderboard: Malformed high scores data in localStorage. Resetting.");
+            interactiveQuizData = { highScores: [] };
+          }
+        } catch (e) {
+          console.error("Leaderboard: Error parsing high scores from localStorage. Resetting.", e);
+          interactiveQuizData = { highScores: [] }; 
+        }
+      } else {
+        interactiveQuizData = { highScores: [] }; 
+      }
+
+      const newHighScoreEntry = {
+        name: userName,
+        score: finalScore,
+        totalQuestions: totalQuestions,
+        percentage: percentage,
         category: selectedCategory,
-        date: new Date().toLocaleString(),
+        date: new Date().toLocaleString(), 
       };
-      scores.push(userGameInfo);
-      localStorage.setItem("scores", JSON.stringify(scores));
+
+      interactiveQuizData.highScores.push(newHighScoreEntry);
+
+      try {
+        localStorage.setItem('interactiveQuizData', JSON.stringify(interactiveQuizData));
+      } catch (e) {
+        console.error("Error saving high scores to localStorage:", e);
+      }
+      
       window.location.href = `score.html?userName=${encodeURIComponent(
         userName
-      )}&score=${score}&total=${total}`;
+      )}&score=${finalScore}&total=${totalQuestions}&percentage=${percentage}`; 
     }
   }, 1500); 
 }
 
-function calculateScore() {
-  return correctAnswersCount;
-}
 
 function shuffleArray(arr) {
-  return arr.sort(() => Math.random() - 0.5);
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]]; 
+  }
+  return arr;
 }
-loadQuestions();
+
+
+if (selectedCategory && userName) { 
+    loadQuestions();
+} else {
+    if (questionTextElement) {
+        questionTextElement.textContent = "⚠️ Quiz category or user name not specified. Please start from the home page.";
+    }
+    console.error("Category or User Name missing from URL parameters.");
+   
+}
