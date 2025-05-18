@@ -1,30 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tech Quiz Leaderboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-</head>
-<body class="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50">
-  <div class="quiz-container p-6 sm:p-8 w-full max-w-2xl bg-white rounded shadow-md">
-    <div class="flex justify-center mb-6">
-      <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeTACgyHOGD5slVJTApKmjboQ8C2ObG_WIfg&s" alt="Quiz App Logo" class="h-12" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tech Quiz Leaderboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            backgroundColor: {
+              "custom-light-blue": "#e5eefa",
+              "custom-red": "#ec2309",
+              "custom-dark-gray": "#424a58",
+              "custom-light-gray": "#e7eaee",
+            },
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+            borderColor: {
+              "charcoal-gray": "#4b4b50",
+            },
+            textColor: {
+              "custom-dark": "#1b1c1d",
+              "custom-very-dark-gray": "#1d1e1f",
+            },
+            boxShadow: {
+              custom:
+                "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="text-custom-dark bg-custom-light-blue font-inter flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50"
+  >
+    <div
+      class="quiz-container p-6 sm:p-8 w-full max-w-2xl bg-white rounded shadow-md"
+    >
+      <div class="flex justify-center mb-6">
+        <img
+          id="logo"
+          class="max-w-[70px] mb-6"
+          src="https://i.postimg.cc/YSKJ5xzX/bbd-logo.png"
+          alt="Quiz App Logo"
+          class="h-12"
+        />
+      </div>
+
+      <h2 class="text-2xl font-bold text-center mb-6 text-gray-600">
+        🏆 Leaderboard 🏆
+      </h2>
+
+      <ul
+        id="leaderboardList"
+        class="space-y-2 max-h-80 overflow-y-auto mb-6 text-gray-700 font-medium"
+      >
+
+      </ul>
+
+      <button
+        id="backToHomeBtn"
+        class="transition-all duration-200 ease-in-out rounded-md py-3 px-6 bg-custom-red hover:bg-red-500 w-full text-white"
+      >
+        Back to Home
+      </button>
     </div>
 
-    <h2 class="text-2xl font-bold text-center mb-6 text-gray-600">🏆 Leaderboard 🏆</h2>
-
-    <ul id="leaderboardList" class="space-y-2 max-h-80 overflow-y-auto mb-6 text-gray-700 font-medium">
-      <!-- Dynamic leaderboard entries go here -->
-    </ul>
-
-    <button id="backToHomeBtn" class="btn btn-primary w-full bg-red-600 text-white py-3 rounded hover:bg-red-700 transition">
-      Back to Home
-    </button>
-  </div>
-
-  <script src="./src/leaderboard.js" defer></script>
-</body>
+    <script src="./src/leaderboard.js" defer></script>
+  </body>
 </html>
