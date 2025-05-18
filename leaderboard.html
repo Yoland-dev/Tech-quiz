@@ -45,7 +45,7 @@
     class="text-custom-dark bg-custom-light-blue font-inter flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50"
   >
     <div
-      class="quiz-container p-6 sm:p-8 w-full max-w-2xl bg-white rounded shadow-md"
+      class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-2xl bg-white rounded shadow-md"
     >
       <div class="flex justify-center mb-6">
         <img
@@ -61,12 +61,19 @@
         🏆 Leaderboard 🏆
       </h2>
 
-      <ul
-        id="leaderboardList"
-        class="space-y-2 max-h-80 overflow-y-auto mb-6 text-gray-700 font-medium"
-      >
+      <table id="leaderboardList" class="w-full text-center border-collapse">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Score</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="show-scores">
 
-      </ul>
+        </tbody>
+      </table>
 
       <button
         id="backToHomeBtn"

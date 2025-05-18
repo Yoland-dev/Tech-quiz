@@ -7,6 +7,8 @@ let quizData = [];
 let currentQuestionIndex = 0;
 const QUESTION_TIME = 15;
 let timerInterval;
+let correctAnswersCount = 0;
+const scores = JSON.parse(localStorage.getItem("scores")) || [];
 
 async function loadQuestions() {
   try {
@@ -80,8 +82,6 @@ function resetTimer() {
   clearInterval(timerInterval);
 }
 
-let correctAnswersCount = 0;
-
 function handleAnswer(selected, correct, timeUp = false) {
   if (currentQuestionIndex >= quizData.length) return;
 
@@ -111,7 +111,6 @@ function handleAnswer(selected, correct, timeUp = false) {
       const score = calculateScore();
       const total = quizData.length;
 
-      const scores = [];
       const userGameInfo = {
         userName,
         score,
