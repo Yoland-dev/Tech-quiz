@@ -1,6 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
-const selectedCategory = urlParams.get('category');
-const userName = urlParams.get('userName');
+const selectedCategory = urlParams.get("category");
+const userName = urlParams.get("userName");
 
 const NUM_QUESTIONS = parseInt(localStorage.getItem("numQuestions")) || 10;
 let quizData = [];
@@ -22,7 +22,8 @@ async function loadQuestions() {
     currentQuestionIndex = 0;
     showQuestion();
   } catch (err) {
-    document.getElementById("questionText").textContent = "⚠️ Failed to load quiz data.";
+    document.getElementById("questionText").textContent =
+      "⚠️ Failed to load quiz data.";
     console.error(err);
   }
 }
@@ -32,18 +33,23 @@ function showQuestion() {
   const total = quizData.length;
 
   document.getElementById("questionText").textContent = q.question;
-  document.getElementById("questionCounter").textContent = `Question ${currentQuestionIndex + 1}/${total}`;
-  document.getElementById("progressBar").style.width = `${((currentQuestionIndex + 1) / total) * 100}%`;
+  document.getElementById("questionCounter").textContent = `Question ${
+    currentQuestionIndex + 1
+  }/${total}`;
+  document.getElementById("progressBar").style.width = `${
+    ((currentQuestionIndex + 1) / total) * 100
+  }%`;
 
   const answerOptionsDiv = document.getElementById("answerOptions");
   answerOptionsDiv.innerHTML = "";
 
   const shuffledOptions = shuffleArray([...q.options]);
 
-  shuffledOptions.forEach(option => {
+  shuffledOptions.forEach((option) => {
     const btn = document.createElement("button");
     btn.textContent = option;
-    btn.className = "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-blue-100 transition duration-200";
+    btn.className =
+      "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-blue-100 transition duration-200";
     btn.onclick = () => handleAnswer(option, q.answer);
     answerOptionsDiv.appendChild(btn);
   });
@@ -99,13 +105,26 @@ function handleAnswer(selected, correct, timeUp = false) {
 
   setTimeout(() => {
     currentQuestionIndex++;
-   if (currentQuestionIndex < quizData.length) {
-  showQuestion();
-} else {
-  const score = calculateScore();
-  const total = quizData.length;
-  window.location.href = `score.html?userName=${encodeURIComponent(userName)}&score=${score}&total=${total}`;
-}
+    if (currentQuestionIndex < quizData.length) {
+      showQuestion();
+    } else {
+      const score = calculateScore();
+      const total = quizData.length;
+
+      const scores = [];
+      const userGameInfo = {
+        userName,
+        score,
+        total,
+        category: selectedCategory,
+        date: new Date().toLocaleString(),
+      };
+      scores.push(userGameInfo);
+      localStorage.setItem("scores", JSON.stringify(scores));
+      window.location.href = `score.html?userName=${encodeURIComponent(
+        userName
+      )}&score=${score}&total=${total}`;
+    }
   }, 1500);
 }
 
