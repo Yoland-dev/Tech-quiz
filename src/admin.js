@@ -1,11 +1,14 @@
-const maxQuestionsConfigInput = document.getElementById('maxQuestionsConfig');
+const minQuestionsConfigInput = document.getElementById('minQuestionsConfigInput'); 
+const maxQuestionsConfigInput = document.getElementById('maxQuestionsConfigInput'); 
+const saveQuestionRangeBtn = document.getElementById('saveQuestionRangeBtn'); 
+
 const adminCategorySelect = document.getElementById('adminCategorySelect');
 const newCategoryNameInput = document.getElementById('newCategoryName');
 const addCategoryBtn = document.getElementById('addCategoryBtn');
 const removeCategoryBtn = document.getElementById('removeCategoryBtn');
 const searchQuestionInputAdmin = document.getElementById('searchQuestionInputAdmin');
 const questionSearchResults = document.getElementById('questionSearchResults');
-const searchHelperText = document.getElementById('searchHelperText'); 
+const searchHelperText = document.getElementById('searchHelperText');
 const formActionTitle = document.getElementById('formActionTitle');
 const questionTextAdminInput = document.getElementById('questionTextAdmin');
 const optionInputsAdmin = [
@@ -14,39 +17,33 @@ const optionInputsAdmin = [
     document.getElementById('option3Admin'),
     document.getElementById('option4Admin')
 ];
-const addOrUpdateQuestionBtn = document.getElementById('addOrUpdateQuestionBtn'); 
+const addOrUpdateQuestionBtn = document.getElementById('addOrUpdateQuestionBtn');
 const deleteLoadedQuestionBtn = document.getElementById('deleteLoadedQuestionBtn');
 const clearQuestionFormBtn = document.getElementById('clearQuestionFormBtn');
 const adminFeedback = document.getElementById('adminFeedback');
 
 let quizData = {
     categories: {
-        "HTML Fundamentals": [
+       
+         "HTML Fundamentals": [
             { id: "html1", question: "What does HTML stand for?", options: ["HyperText Markup Language", "HighText Machine Language", "HyperTransfer Markup Language", "HyperText and links Markup Language"], answer: "HyperText Markup Language" },
             { id: "html2", question: "Which HTML tag is used to define an internal style sheet?", options: ["<style>", "<script>", "<css>", "<link>"], answer: "<style>" }
         ],
-        "Javascript Basics": [ 
+        "Javascript Basics": [
             { id: "js1", question: "What keyword is used to declare a variable in JavaScript?", options: ["var", "let", "const", "all of the above"], answer: "all of the above" },
             { id: "js2", question: "Which company developed JavaScript?", options: ["Netscape", "Microsoft", "Sun Microsystems", "Google"], answer: "Netscape" }
         ],
-        "CSS Flexbox": [
-            { id: "flex1", question: "Which property is used to make a container a flex container?", options: ["display: flex;", "flex-direction: row;", "align-items: center;", "justify-content: space-between;"], answer: "display: flex;" },
-            { id: "flex2", question: "What does `justify-content: center;` do in a flex container?", options: ["Aligns items to the center of the main axis", "Aligns items to the center of the cross axis", "Stretches items to fill the container", "Distributes space around items"], answer: "Aligns items to the center of the main axis" }
-        ],
-        "CSS Grid": [
-            { id: "grid1", question: "Which property is used to make a container a grid container?", options: ["display: grid;", "grid-template-columns: auto;", "grid-gap: 10px;", "position: grid;"], answer: "display: grid;" },
-            { id: "grid2", question: "How do you define three columns of equal width in CSS Grid?", options: ["grid-template-columns: 1fr 1fr 1fr;", "grid-columns: 3;", "columns: 1fr 1fr 1fr;", "grid-template: repeat(3, 1fr);"], answer: "grid-template-columns: 1fr 1fr 1fr;" }
-        ]
     },
     settings: {
-        maxQuestionsPerQuiz: 15 
+        minQuestionsPerQuiz: 5,  
+        maxQuestionsPerQuiz: 15  
     },
-    highScores: [], 
-    userProgress: {} 
+    highScores: [],
+    userProgress: {}
 };
 
-let editingQuestionId = null; 
-let currentEditingCategory = null; 
+let editingQuestionId = null;
+let currentEditingCategory = null;
 
 function saveData() {
     try {
@@ -61,31 +58,18 @@ function saveData() {
 async function loadData() {
     const storedDataString = localStorage.getItem('interactiveQuizData');
     let successfullyLoadedFromStorage = false;
-    const fallbackCategories = { 
-        "HTML Fundamentals": [
-            { id: "html1", question: "What does HTML stand for?", options: ["HyperText Markup Language", "HighText Machine Language", "HyperTransfer Markup Language", "HyperText and links Markup Language"], answer: "HyperText Markup Language" },
-            { id: "html2", question: "Which HTML tag is used to define an internal style sheet?", options: ["<style>", "<script>", "<css>", "<link>"], answer: "<style>" }
-        ],
-        "Javascript Basics": [ 
-            { id: "js1", question: "What keyword is used to declare a variable in JavaScript?", options: ["var", "let", "const", "all of the above"], answer: "all of the above" },
-            { id: "js2", question: "Which company developed JavaScript?", options: ["Netscape", "Microsoft", "Sun Microsystems", "Google"], answer: "Netscape" }
-        ],
-        "CSS Flexbox": [
-            { id: "flex1", question: "Which property is used to make a container a flex container?", options: ["display: flex;", "flex-direction: row;", "align-items: center;", "justify-content: space-between;"], answer: "display: flex;" },
-            { id: "flex2", question: "What does `justify-content: center;` do in a flex container?", options: ["Aligns items to the center of the main axis", "Aligns items to the center of the cross axis", "Stretches items to fill the container", "Distributes space around items"], answer: "Aligns items to the center of the main axis" }
-        ],
-        "CSS Grid": [
-            { id: "grid1", question: "Which property is used to make a container a grid container?", options: ["display: grid;", "grid-template-columns: auto;", "grid-gap: 10px;", "position: grid;"], answer: "display: grid;" },
-            { id: "grid2", question: "How do you define three columns of equal width in CSS Grid?", options: ["grid-template-columns: 1fr 1fr 1fr;", "grid-columns: 3;", "columns: 1fr 1fr 1fr;", "grid-template: repeat(3, 1fr);"], answer: "grid-template-columns: 1fr 1fr 1fr;" }
-        ]
-    };
+    const fallbackCategories = { };
 
     if (storedDataString) {
         try {
             const parsedData = JSON.parse(storedDataString);
             if (parsedData.categories && Object.keys(parsedData.categories).length > 0) {
                 quizData.categories = parsedData.categories;
-                quizData.settings = { ...quizData.settings, ...(parsedData.settings || {}) };
+                quizData.settings = {
+                    minQuestionsPerQuiz: 5, 
+                    maxQuestionsPerQuiz: 15,
+                    ...(parsedData.settings || {}) 
+                };
                 quizData.highScores = parsedData.highScores || [];
                 quizData.userProgress = parsedData.userProgress || {};
                 successfullyLoadedFromStorage = true;
@@ -99,30 +83,44 @@ async function loadData() {
     if (!successfullyLoadedFromStorage) {
         console.log("localStorage empty or categories missing, attempting to fetch data.json...");
         try {
-            const response = await fetch('../src/data.json'); 
+            const response = await fetch('../src/data.json');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const jsonData = await response.json();
             if (jsonData && jsonData.categories && Object.keys(jsonData.categories).length > 0) {
                 quizData.categories = jsonData.categories;
-                quizData.settings = { ...quizData.settings, ...(jsonData.settings || {}) };
+                quizData.settings = {
+                    minQuestionsPerQuiz: 5, 
+                    maxQuestionsPerQuiz: 15, 
+                     ...(jsonData.settings || {}) 
+                };
                 quizData.highScores = jsonData.highScores || [];
                 quizData.userProgress = jsonData.userProgress || {};
                 console.log("Data loaded from data.json.");
+                if (!storedDataString) {
+                    saveData();
+                }
             } else {
-                console.warn("data.json fetched but structure is invalid or categories missing. Using fallback.");
+                console.warn("data.json fetched but structure is invalid or categories missing. Using fallback categories and default settings.");
                 quizData.categories = { ...fallbackCategories };
+                quizData.settings = { minQuestionsPerQuiz: 5, maxQuestionsPerQuiz: 15 }; 
             }
         } catch (error) {
             console.error("Failed to fetch or parse data.json:", error);
-            console.log("Using fallback default categories.");
+            console.log("Using fallback default categories and settings.");
             quizData.categories = { ...fallbackCategories };
-            quizData.settings = { maxQuestionsPerQuiz: 15 };
+            quizData.settings = { minQuestionsPerQuiz: 5, maxQuestionsPerQuiz: 15 };
             quizData.highScores = [];
             quizData.userProgress = {};
         }
     }
-    
+
+    quizData.settings = quizData.settings || {};
+    quizData.settings.minQuestionsPerQuiz = quizData.settings.minQuestionsPerQuiz || 5;
     quizData.settings.maxQuestionsPerQuiz = quizData.settings.maxQuestionsPerQuiz || 15;
+
+    if (minQuestionsConfigInput) {
+        minQuestionsConfigInput.value = quizData.settings.minQuestionsPerQuiz;
+    }
     if (maxQuestionsConfigInput) {
         maxQuestionsConfigInput.value = quizData.settings.maxQuestionsPerQuiz;
     }
@@ -132,13 +130,13 @@ async function loadData() {
 
 function populateCategories() {
     if (!adminCategorySelect) return;
-    const currentCategoryValue = adminCategorySelect.value; 
-    adminCategorySelect.innerHTML = ''; 
+    const currentCategoryValue = adminCategorySelect.value;
+    adminCategorySelect.innerHTML = '';
 
     const defaultOption = document.createElement('option');
     defaultOption.value = "";
     defaultOption.textContent = "-- Select Category --";
-    defaultOption.selected = true; 
+    defaultOption.selected = true;
     adminCategorySelect.appendChild(defaultOption);
 
     const categoryNames = Object.keys(quizData.categories);
@@ -156,13 +154,12 @@ function populateCategories() {
         if (quizData.categories[currentCategoryValue]) {
             adminCategorySelect.value = currentCategoryValue;
         } else {
-            adminCategorySelect.value = ""; 
+            adminCategorySelect.value = "";
         }
     }
     if(searchQuestionInputAdmin) searchQuestionInputAdmin.value = "";
-    displayQuestionSearchResults([]); 
+    displayQuestionSearchResults([]);
 }
-
 
 function showAdminFeedback(message, isError = false) {
     if (adminFeedback) {
@@ -174,25 +171,38 @@ function showAdminFeedback(message, isError = false) {
     }
 }
 
-function handleMaxQuestionsConfigChange() {
-    if (!maxQuestionsConfigInput) return;
-    const count = parseInt(maxQuestionsConfigInput.value);
+function handleSaveQuestionRangeConfig() {
+    if (!minQuestionsConfigInput || !maxQuestionsConfigInput) return;
 
-    if (count > 0) {
-        quizData.settings.maxQuestionsPerQuiz = count;
-        saveData();
-        showAdminFeedback(`Maximum questions per quiz set to ${count}.`);
-    } else {
-        maxQuestionsConfigInput.value = quizData.settings.maxQuestionsPerQuiz; 
-        showAdminFeedback("Maximum questions must be at least 1.", true);
+    const minCount = parseInt(minQuestionsConfigInput.value);
+    const maxCount = parseInt(maxQuestionsConfigInput.value);
+
+    if (isNaN(minCount) || isNaN(maxCount) || minCount <= 0 || maxCount <= 0) {
+        showAdminFeedback("Min and Max questions must be positive numbers.", true);
+        minQuestionsConfigInput.value = quizData.settings.minQuestionsPerQuiz;
+        maxQuestionsConfigInput.value = quizData.settings.maxQuestionsPerQuiz;
+        return;
     }
+
+    if (minCount > maxCount) {
+        showAdminFeedback("Min questions cannot be greater than Max questions.", true);
+        minQuestionsConfigInput.value = quizData.settings.minQuestionsPerQuiz; 
+        maxQuestionsConfigInput.value = quizData.settings.maxQuestionsPerQuiz; 
+        return;
+    }
+
+    quizData.settings.minQuestionsPerQuiz = minCount;
+    quizData.settings.maxQuestionsPerQuiz = maxCount;
+    saveData();
+    showAdminFeedback(`Quiz question range set to ${minCount}-${maxCount}.`);
 }
+
 
 function handleAddCategory() {
     if (!newCategoryNameInput) return;
     const newCategory = newCategoryNameInput.value.trim();
 
-    if (newCategory === "") { 
+    if (newCategory === "") {
         showAdminFeedback("Category name cannot be empty.", true);
         return;
     }
@@ -200,26 +210,26 @@ function handleAddCategory() {
         showAdminFeedback(`Category "${newCategory}" already exists.`, true);
         return;
     }
-    
+
     quizData.categories[newCategory] = [];
     saveData();
     populateCategories();
-    adminCategorySelect.value = newCategory; 
-    if(searchQuestionInputAdmin) searchQuestionInputAdmin.value = ""; 
-    displayQuestionSearchResults([]); 
+    adminCategorySelect.value = newCategory;
+    if(searchQuestionInputAdmin) searchQuestionInputAdmin.value = "";
+    displayQuestionSearchResults([]);
     newCategoryNameInput.value = '';
     showAdminFeedback(`Category "${newCategory}" added successfully.`);
 }
 
 function handleRemoveCategory() {
-    if (!adminCategorySelect) return;
+     if (!adminCategorySelect) return;
     const categoryToRemove = adminCategorySelect.value;
 
-    if (!categoryToRemove || categoryToRemove === "") { 
+    if (!categoryToRemove || categoryToRemove === "") {
         showAdminFeedback("Please select a category to remove.", true);
         return;
     }
-    
+
     delete quizData.categories[categoryToRemove];
 
     for (const key in quizData.userProgress) {
@@ -230,7 +240,7 @@ function handleRemoveCategory() {
     quizData.highScores = quizData.highScores.filter(hs => hs.category !== categoryToRemove);
 
     saveData();
-    populateCategories(); 
+    populateCategories();
     showAdminFeedback(`Category "${categoryToRemove}" and all its associated data have been removed.`);
 }
 
@@ -256,18 +266,18 @@ function resetQuestionForm(isAdding = true) {
     formActionTitle.textContent = isAdding ? "Add New Question:" : "Edit Question:";
     deleteLoadedQuestionBtn.style.display = 'none';
     clearQuestionFormBtn.style.display = 'none';
-    if(adminCategorySelect) adminCategorySelect.disabled = false; 
-    if(searchQuestionInputAdmin) searchQuestionInputAdmin.disabled = false; 
+    if(adminCategorySelect) adminCategorySelect.disabled = false;
+    if(searchQuestionInputAdmin) searchQuestionInputAdmin.disabled = false;
 }
 
 function handleAddOrUpdateQuestion() {
     if (!adminCategorySelect || !questionTextAdminInput) return;
 
-    const category = editingQuestionId ? currentEditingCategory : adminCategorySelect.value; 
+    const category = editingQuestionId ? currentEditingCategory : adminCategorySelect.value;
     const questionText = questionTextAdminInput.value.trim();
     const options = optionInputsAdmin.map(input => input.value.trim()).filter(opt => opt !== "");
 
-    if (!category || category === "") { 
+    if (!category || category === "") {
         showAdminFeedback("Please select a category for the question.", true);
         return;
     }
@@ -285,7 +295,7 @@ function handleAddOrUpdateQuestion() {
     }
 
     if (editingQuestionId) {
-        if (!quizData.categories[category]) { 
+        if (!quizData.categories[category]) {
             showAdminFeedback("Error: Category for editing question not found.", true);
             resetQuestionForm();
             return;
@@ -293,7 +303,7 @@ function handleAddOrUpdateQuestion() {
         const questionIndex = quizData.categories[category].findIndex(q => q.id === editingQuestionId);
         if (questionIndex > -1) {
             quizData.categories[category][questionIndex] = {
-                ...quizData.categories[category][questionIndex], 
+                ...quizData.categories[category][questionIndex],
                 question: questionText,
                 options: options,
                 answer: options[0]
@@ -307,12 +317,12 @@ function handleAddOrUpdateQuestion() {
             id: getNextQuestionId(),
             question: questionText,
             options: options,
-            answer: options[0] 
+            answer: options[0]
         };
         quizData.categories[category].push(newQuestion);
         showAdminFeedback(`Question added successfully to "${category}"!`);
     }
-    
+
     saveData();
     resetQuestionForm();
     if (searchQuestionInputAdmin && searchQuestionInputAdmin.value.trim() !== "") {
@@ -324,8 +334,8 @@ function handleAddOrUpdateQuestion() {
 
 function displayQuestionSearchResults(results, categoryName) {
     if (!questionSearchResults || !searchHelperText) return;
-    
-    questionSearchResults.innerHTML = ''; 
+
+    questionSearchResults.innerHTML = '';
 
     if (results.length === 0) {
         if (searchQuestionInputAdmin && searchQuestionInputAdmin.value.trim() !== "") {
@@ -348,7 +358,7 @@ function displayQuestionSearchResults(results, categoryName) {
 
         const questionSpan = document.createElement('span');
         questionSpan.className = 'question-text-display flex-1 mr-2 text-gray-700';
-        questionSpan.textContent = q.question.length > 60 ? q.question.substring(0, 57) + "..." : q.question; 
+        questionSpan.textContent = q.question.length > 60 ? q.question.substring(0, 57) + "..." : q.question;
         itemDiv.appendChild(questionSpan);
         itemDiv.addEventListener('click', () => loadQuestionForEditing(q.id, categoryName));
 
@@ -366,19 +376,19 @@ function loadQuestionForEditing(questionId, categoryName) {
     formActionTitle.textContent = `Edit Question (ID: ${questionId}):`;
     questionTextAdminInput.value = questionToEdit.question;
     optionInputsAdmin.forEach((input, index) => {
-        input.value = questionToEdit.options[index] || ""; 
+        input.value = questionToEdit.options[index] || "";
     });
-    
-    editingQuestionId = questionId;
-    currentEditingCategory = categoryName; 
-    addOrUpdateQuestionBtn.textContent = "Update Question";
-    deleteLoadedQuestionBtn.style.display = 'inline-block'; 
-    clearQuestionFormBtn.style.display = 'inline-block'; 
 
-    adminCategorySelect.value = categoryName; 
-    adminCategorySelect.disabled = true; 
-    searchQuestionInputAdmin.disabled = true; 
-    questionTextAdminInput.focus(); 
+    editingQuestionId = questionId;
+    currentEditingCategory = categoryName;
+    addOrUpdateQuestionBtn.textContent = "Update Question";
+    deleteLoadedQuestionBtn.style.display = 'inline-block';
+    clearQuestionFormBtn.style.display = 'inline-block';
+
+    adminCategorySelect.value = categoryName;
+    adminCategorySelect.disabled = true;
+    searchQuestionInputAdmin.disabled = true;
+    questionTextAdminInput.focus();
 }
 
 function handleDeleteLoadedQuestion() {
@@ -394,7 +404,7 @@ function handleDeleteLoadedQuestion() {
             categoryQuestions.splice(questionIndex, 1);
             saveData();
             showAdminFeedback(`Question ID "${editingQuestionId}" deleted successfully from "${currentEditingCategory}".`);
-            resetQuestionForm(); 
+            resetQuestionForm();
             if (searchQuestionInputAdmin && searchQuestionInputAdmin.value.trim() !== "") {
                 handleQuestionSearch();
             } else {
@@ -413,60 +423,38 @@ function handleQuestionSearch() {
     const selectedCategory = adminCategorySelect.value;
 
     if (!selectedCategory || selectedCategory === "") {
-        displayQuestionSearchResults([]); 
+        displayQuestionSearchResults([]);
         searchHelperText.textContent = "Please select a category to search within.";
         searchHelperText.style.display = 'block';
         return;
     }
 
     if (!searchTerm) {
-        displayQuestionSearchResults([], selectedCategory); 
+        displayQuestionSearchResults([], selectedCategory);
         return;
     }
 
     const questionsInCategory = quizData.categories[selectedCategory] || [];
-    const matchedQuestions = questionsInCategory.filter(q => 
+    const matchedQuestions = questionsInCategory.filter(q =>
         q.question.toLowerCase().includes(searchTerm)
     );
     displayQuestionSearchResults(matchedQuestions, selectedCategory);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const numQuestionsInput = document.getElementById("numQuestions");
-    const maxQuestionsDisplay = document.getElementById("maxQuestions");
-
-    const MAX_QUESTIONS = 30; 
-    maxQuestionsDisplay.textContent = MAX_QUESTIONS;
-
-    const saved = parseInt(localStorage.getItem("numQuestions"));
-    if (!isNaN(saved)) {
-      numQuestionsInput.value = saved;
-    }
-
-    document.getElementById("saveSettings").addEventListener("click", () => {
-      const num = parseInt(numQuestionsInput.value);
-      if (!isNaN(num) && num > 0 && num <= MAX_QUESTIONS) {
-        localStorage.setItem("numQuestions", num);
-        alert("✅ Settings saved!");
-      } else {
-        alert(`❌ Please enter a number between 1 and ${MAX_QUESTIONS}`);
-      }
-    });
-  });
-
 document.addEventListener('DOMContentLoaded', async () => {
-    await loadData(); 
+    await loadData();
 
-    if (maxQuestionsConfigInput) {
-        maxQuestionsConfigInput.addEventListener('change', handleMaxQuestionsConfigChange);
+    if (saveQuestionRangeBtn) {
+        saveQuestionRangeBtn.addEventListener('click', handleSaveQuestionRangeConfig);
     }
+
     if (addCategoryBtn) {
         addCategoryBtn.addEventListener('click', handleAddCategory);
     }
     if (removeCategoryBtn) {
         removeCategoryBtn.addEventListener('click', handleRemoveCategory);
     }
-    if (addOrUpdateQuestionBtn) { 
+    if (addOrUpdateQuestionBtn) {
         addOrUpdateQuestionBtn.addEventListener('click', handleAddOrUpdateQuestion);
     }
     if (deleteLoadedQuestionBtn) {
@@ -476,28 +464,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         clearQuestionFormBtn.addEventListener('click', () => {
             resetQuestionForm();
             if (searchQuestionInputAdmin && searchQuestionInputAdmin.value.trim() !== "") {
-                 handleQuestionSearch(); 
+                 handleQuestionSearch();
             } else {
-                displayQuestionSearchResults([], adminCategorySelect.value); 
+                displayQuestionSearchResults([], adminCategorySelect.value);
             }
         });
     }
     if (adminCategorySelect) {
         adminCategorySelect.addEventListener('change', (event) => {
             const selectedCategory = event.target.value;
-            if (editingQuestionId) {
+            if (editingQuestionId) { 
                 showAdminFeedback("Question editing cancelled due to category change.", true);
             }
-            resetQuestionForm(); 
-            if(searchQuestionInputAdmin) searchQuestionInputAdmin.value = ""; 
-            displayQuestionSearchResults([], selectedCategory); 
+            resetQuestionForm();
+            if(searchQuestionInputAdmin) searchQuestionInputAdmin.value = "";
+            displayQuestionSearchResults([], selectedCategory);
         });
     }
     if (searchQuestionInputAdmin) {
         searchQuestionInputAdmin.addEventListener('input', handleQuestionSearch);
     }
 
-    resetQuestionForm(); 
+    resetQuestionForm();
     console.log("Admin panel JavaScript loaded and initialized.");
-    console.log("Current quizData after loading:", quizData); 
+    console.log("Current quizData after loading:", quizData);
 });
