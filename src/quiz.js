@@ -29,7 +29,7 @@ async function loadQuestions() {
 
     const res = await fetch("src/data.json");
     if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
     const data = await res.json();
 
@@ -40,13 +40,19 @@ async function loadQuestions() {
     }
 
     const categoryQuestions = data.categories[selectedCategory];
-    quizData = shuffleArray(categoryQuestions).slice(0, NUM_QUESTIONS); 
+    const maxQuestions = data.settings?.maxQuestionsPerQuiz || 15;
+    const availableQuestions = categoryQuestions.length;
+
+    // Generate a random number between 1 and the smaller of availableQuestions and maxQuestions
+    const NUM_QUESTIONS = Math.floor(Math.random() * Math.min(availableQuestions, maxQuestions)) + 1;
+
+    quizData = shuffleArray(categoryQuestions).slice(0, NUM_QUESTIONS);
     currentQuestionIndex = 0;
-    correctAnswersCount = 0; 
+    correctAnswersCount = 0;
     showQuestion();
   } catch (err) {
     if (questionTextElement) {
-        questionTextElement.textContent = "⚠️ Failed to load quiz data. Please check the category or data source.";
+      questionTextElement.textContent = "⚠️ Failed to load quiz data. Please check the category or data source.";
     }
     console.error("Error loading questions:", err);
   }
