@@ -99,7 +99,7 @@ async function loadData() {
     if (!successfullyLoadedFromStorage) {
         console.log("localStorage empty or categories missing, attempting to fetch data.json...");
         try {
-            const response = await fetch('data.json'); 
+            const response = await fetch('../src/data.json'); 
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const jsonData = await response.json();
             if (jsonData && jsonData.categories && Object.keys(jsonData.categories).length > 0) {
@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const numQuestionsInput = document.getElementById("numQuestions");
     const maxQuestionsDisplay = document.getElementById("maxQuestions");
 
-    const MAX_QUESTIONS = 30; // ideally, we should update it when new questions have been added.
+    const MAX_QUESTIONS = 30; 
     maxQuestionsDisplay.textContent = MAX_QUESTIONS;
 
     const saved = parseInt(localStorage.getItem("numQuestions"));

@@ -10,8 +10,18 @@ let timerInterval;
 let correctAnswersCount = 0;
 const scores = JSON.parse(localStorage.getItem("scores")) || [];
 
+function widenQuizContainer() {
+    const quizViewElement = document.getElementById("quiz-view");
+    if (quizViewElement) {
+        quizViewElement.classList.remove("max-w-xl"); 
+        quizViewElement.classList.add("max-w-3xl");   
+    }
+}
+
 async function loadQuestions() {
   try {
+    widenQuizContainer();
+
     const res = await fetch("src/data.json");
     const data = await res.json();
 
@@ -43,7 +53,7 @@ function showQuestion() {
   }%`;
 
   const answerOptionsDiv = document.getElementById("answerOptions");
-  answerOptionsDiv.innerHTML = "";
+  answerOptionsDiv.innerHTML = ""; 
 
   const shuffledOptions = shuffleArray([...q.options]);
 
@@ -51,12 +61,10 @@ function showQuestion() {
     const btn = document.createElement("button");
     btn.textContent = option;
     btn.className =
-      "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-blue-100 transition duration-200";
+      "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-blue-100 transition duration-200 text-gray-700"; // Added text-gray-700 for better contrast on white
     btn.onclick = () => handleAnswer(option, q.answer);
     answerOptionsDiv.appendChild(btn);
   });
-
-  document.getElementById("feedbackText").textContent = "";
 
   resetTimer();
   startTimer();
@@ -73,7 +81,7 @@ function startTimer() {
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      handleAnswer(null, quizData[currentQuestionIndex].answer, true); // Auto-submit
+      handleAnswer(null, quizData[currentQuestionIndex].answer, true);
     }
   }, 1000);
 }
@@ -82,26 +90,37 @@ function resetTimer() {
   clearInterval(timerInterval);
 }
 
-function handleAnswer(selected, correct, timeUp = false) {
+function handleAnswer(selectedOptionText, correctAnswerText, timeUp = false) {
   if (currentQuestionIndex >= quizData.length) return;
 
   resetTimer();
 
-  const feedback = document.getElementById("feedbackText");
-  if (timeUp) {
-    feedback.textContent = `⏰ Time's up! Correct answer: ${correct}`;
-    feedback.classList.remove("text-green-500");
-    feedback.classList.add("text-red-500");
-  } else if (selected === correct) {
-    feedback.textContent = "✅ Correct!";
-    feedback.classList.remove("text-red-500");
-    feedback.classList.add("text-green-500");
+  const answerButtons = document.getElementById("answerOptions").querySelectorAll('button');
+  answerButtons.forEach(btn => {
+    btn.disabled = true;
+    btn.classList.remove("hover:bg-blue-100"); 
+  });
+
+  let userWasCorrect = false;
+  if (!timeUp && selectedOptionText === correctAnswerText) {
+    userWasCorrect = true;
     correctAnswersCount++;
-  } else {
-    feedback.textContent = `❌ Incorrect! Correct answer: ${correct}`;
-    feedback.classList.remove("text-green-500");
-    feedback.classList.add("text-red-500");
   }
+
+  answerButtons.forEach(btn => {
+    const optionTextOfButton = btn.textContent;
+
+    if (optionTextOfButton === correctAnswerText) {
+      btn.classList.remove("bg-white", "border-gray-300", "text-gray-700");
+      btn.classList.add("bg-green-500", "text-white", "border-green-600");
+    }
+    else if (!timeUp && optionTextOfButton === selectedOptionText) {
+      btn.classList.remove("bg-white", "border-gray-300", "text-gray-700");
+      btn.classList.add("bg-red-500", "text-white", "border-red-600");
+    }
+  
+  });
+
 
   setTimeout(() => {
     currentQuestionIndex++;
@@ -124,7 +143,7 @@ function handleAnswer(selected, correct, timeUp = false) {
         userName
       )}&score=${score}&total=${total}`;
     }
-  }, 1500);
+  }, 1500); 
 }
 
 function calculateScore() {
@@ -134,5 +153,4 @@ function calculateScore() {
 function shuffleArray(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }
-
 loadQuestions();
