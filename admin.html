@@ -28,7 +28,7 @@
             },
             borderColor: {
               "charcoal-gray": "#4b4b50",
-              "dark-blue-gray": "#4a5568"
+              "dark-blue-gray": "#4a5568",
             },
             textColor: {
               "custom-dark": "#1b1c1d",
@@ -44,17 +44,37 @@
     </script>
   </head>
 
-  <body class="flex flex-col items-center justify-center min-h-screen p-4">
-    <div class=" bg-white rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-2xl">
+  <body class="text-custom-dark bg-custom-light-blue font-inter flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-2xl">
       <div class="flex justify-center">
-        <img id="logo" src="images/bbd-logo.png" alt="Quiz App Logo" />
+        <img
+          id="logo"
+          src="images/bbd-logo.png"
+          alt="Quiz App Logo"
+          class="max-w-[70px] mb-6"
+        />
       </div>
-      <h2 class="font-inter text-gray-600 text-2xl font-bold text-center mb-6">
+      <h2
+        class="font-inter text-custom-dark text-2xl font-bold text-center mb-6"
+      >
         Admin Panel
       </h2>
 
-      <div class="admin-section">
+      <div class="border-t border-dark-blue-gray mt-8 pt-6">
+        <h3 class="font-inter text-custom-dark text-lg font-semibold mb-3">
+          Quiz Configuration
+        </h3>
         <div class="mb-4">
+          <label for="maxQuestionsConfig" class="block text-sm font-medium mb-1"
+            >Max Questions per Quiz:</label
+          >
+          <input
+            type="number"
+            id="maxQuestionsConfig"
+            class="w-full p-2 text-custom-very-dark-gray bg-custom-light-gray border-2 border-charcoal-gray rounded-md"
+            min="1"
+            value="15"
+          />
           <h2 class="font-inter text-blue-300 font-semibold text-lg">
             Quiz Configuration
           </h2>
@@ -77,8 +97,8 @@
         </div>
       </div>
 
-      <div class="border-2 border-dark-blue-gray mt-8 pt-6">
-        <h3 class="text-lg font-semibold mb-3 font-inter text-blue-300 ">
+      <div class="border-t border-dark-blue-gray mt-8 pt-6">
+        <h3 class="text-lg font-semibold mb-3">
           Manage Categories & Questions
         </h3>
         <div class="mb-2">
