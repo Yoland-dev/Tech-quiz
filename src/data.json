@@ -1,0 +1,1335 @@
+{
+    "categories": {
+        "JavaScript Basics": [
+            {
+                "id": "js1",
+                "question": "What keyword is used to declare a variable in JavaScript?",
+                "options": [
+                    "var",
+                    "let",
+                    "const",
+                    "all of the above"
+                ],
+                "answer": "all of the above"
+            },
+            {
+                "id": "js2",
+                "question": "Which company developed JavaScript?",
+                "options": [
+                    "Netscape",
+                    "Microsoft",
+                    "Sun Microsystems",
+                    "Google"
+                ],
+                "answer": "Netscape"
+            },
+            {
+                "id": "js3",
+                "question": "What is `typeof null`?",
+                "options": [
+                    "object",
+                    "null",
+                    "undefined",
+                    "string"
+                ],
+                "answer": "object"
+            },
+            {
+                "id": "js4",
+                "question": "Which method is used to write to the browser console?",
+                "options": [
+                    "console.log()",
+                    "document.write()",
+                    "window.alert()",
+                    "console.write()"
+                ],
+                "answer": "console.log()"
+            },
+            {
+                "id": "js5",
+                "question": "What does 'NaN' stand for?",
+                "options": [
+                    "Not a Number",
+                    "No Available Name",
+                    "Null and None",
+                    "Negative Absolute Number"
+                ],
+                "answer": "Not a Number"
+            },
+            {
+                "id": "js6",
+                "question": "How do you create a function in JavaScript?",
+                "options": [
+                    "function myFunction()",
+                    "def myFunction():",
+                    "create function myFunction()",
+                    "function:myFunction()"
+                ],
+                "answer": "function myFunction()"
+            },
+            {
+                "id": "js7",
+                "question": "How do you call a function named 'myFunction'?",
+                "options": [
+                    "myFunction()",
+                    "call myFunction()",
+                    "execute myFunction",
+                    "myFunction.call"
+                ],
+                "answer": "myFunction()"
+            },
+            {
+                "id": "js8",
+                "question": "How to write an IF statement in JavaScript?",
+                "options": [
+                    "if (i == 5)",
+                    "if i = 5 then",
+                    "if i == 5 then",
+                    "if i = 5"
+                ],
+                "answer": "if (i == 5)"
+            },
+            {
+                "id": "js9",
+                "question": "How does a FOR loop start?",
+                "options": [
+                    "for (let i = 0; i <= 5; i++)",
+                    "for (let i = 0; i <= 5)",
+                    "for i = 1 to 5",
+                    "for (let i <= 5; i++)"
+                ],
+                "answer": "for (i = 0; i <= 5; i++)"
+            },
+            {
+                "id": "js10",
+                "question": "How can you add a comment in JavaScript?",
+                "options": [
+                    "//This is a comment",
+                    "",
+                    "'This is a comment",
+                    "/* This is a comment */"
+                ],
+                "answer": "//This is a comment"
+            },
+            {
+                "id": "js11",
+                "question": "What is the correct way to write a JavaScript array?",
+                "options": [
+                    "var colors = ['red', 'green', 'blue']",
+                    "var colors = (1:'red', 2:'green', 3:'blue')",
+                    "var colors = 'red', 'green', 'blue'",
+                    "var colors = 1 = ('red'), 2 = ('green')"
+                ],
+                "answer": "var colors = ['red', 'green', 'blue']"
+            },
+            {
+                "id": "js12",
+                "question": "Which event occurs when the user clicks on an HTML element?",
+                "options": [
+                    "onclick",
+                    "onmouseclick",
+                    "onchange",
+                    "onmouseover"
+                ],
+                "answer": "onclick"
+            },
+            {
+                "id": "js13",
+                "question": "Which symbol is used for comments in JavaScript?",
+                "options": [
+                    "//",
+                    "/*",
+                    "#",
+                    "<!--"
+                ],
+                "answer": "//"
+            },
+            {
+                "id": "js14",
+                "question": "Which method converts JSON data to a JavaScript object?",
+                "options": [
+                    "JSON.parse()",
+                    "JSON.stringify()",
+                    "JSON.toObject()",
+                    "JSON.convert()"
+                ],
+                "answer": "JSON.parse()"
+            },
+            {
+                "id": "js15",
+                "question": "Which operator is used to compare both value and type in JavaScript?",
+                "options": [
+                    "===",
+                    "==",
+                    "!=",
+                    "!="
+                ],
+                "answer": "==="
+            },
+            {
+                "id": "js16",
+                "question": "Which is NOT a JavaScript data type?",
+                "options": [
+                    "boolean",
+                    "float",
+                    "undefined",
+                    "object"
+                ],
+                "answer": "float"
+            },
+            {
+                "id": "js17",
+                "question": "Which keyword is used to define a constant variable?",
+                "options": [
+                    "const",
+                    "let",
+                    "var",
+                    "constant"
+                ],
+                "answer": "const"
+            },
+            {
+                "id": "js18",
+                "question": "Which of these is used to handle errors in JavaScript?",
+                "options": [
+                    "try...catch",
+                    "error handling",
+                    "exception()",
+                    "if...else"
+                ],
+                "answer": "try...catch"
+            },
+            {
+                "id": "js19",
+                "question": "How do you check the length of an array?",
+                "options": [
+                    "array.length",
+                    "array.size()",
+                    "array.count()",
+                    "array.length()"
+                ],
+                "answer": "array.length"
+            },
+            {
+                "id": "js20",
+                "question": "What will `Boolean(0)` return?",
+                "options": [
+                    "false",
+                    "true",
+                    "undefined",
+                    "null"
+                ],
+                "answer": "false"
+            },
+            {
+                "id": "js21",
+                "question": "Which method is used to join array elements into a string?",
+                "options": [
+                    "join()",
+                    "concat()",
+                    "merge()",
+                    "combine()"
+                ],
+                "answer": "join()"
+            },
+            {
+                "id": "js22",
+                "question": "Which loop is guaranteed to execute at least once?",
+                "options": [
+                    "do...while",
+                    "for",
+                    "while",
+                    "forEach"
+                ],
+                "answer": "do...while"
+            },
+            {
+                "id": "js23",
+                "question": "Which statement is used to exit a loop early?",
+                "options": [
+                    "break",
+                    "exit",
+                    "stop",
+                    "halt"
+                ],
+                "answer": "break"
+            },
+            {
+                "id": "js24",
+                "question": "Which of these is a correct way to declare an arrow function?",
+                "options": [
+                    "const myFunc = () => {}",
+                    "function myFunc => {}",
+                    "myFunc() => {}",
+                    "arrow myFunc() {}"
+                ],
+                "answer": "const myFunc = () => {}"
+            },
+            {
+                "id": "js25",
+                "question": "Which object is the global object in browsers?",
+                "options": [
+                    "window",
+                    "document",
+                    "global",
+                    "this"
+                ],
+                "answer": "window"
+            },
+            {
+                "id": "js26",
+                "question": "What will `typeof NaN` return?",
+                "options": [
+                    "number",
+                    "NaN",
+                    "undefined",
+                    "object"
+                ],
+                "answer": "number"
+            },
+            {
+                "id": "js27",
+                "question": "Which method adds an element to the end of an array?",
+                "options": [
+                    "push()",
+                    "pop()",
+                    "shift()",
+                    "unshift()"
+                ],
+                "answer": "push()"
+            },
+            {
+                "id": "js28",
+                "question": "Which symbol is used for strict equality in JavaScript?",
+                "options": [
+                    "===",
+                    "==",
+                    "=",
+                    "!=="
+                ],
+                "answer": "==="
+            },
+            {
+                "id": "js29",
+                "question": "Which function converts a number to a string?",
+                "options": [
+                    "toString()",
+                    "stringify()",
+                    "convert()",
+                    "toText()"
+                ],
+                "answer": "toString()"
+            },
+            {
+                "id": "js30",
+                "question": "Which keyword is used to create a class in JavaScript?",
+                "options": [
+                    "class",
+                    "constructor",
+                    "object",
+                    "struct"
+                ],
+                "answer": "class"
+            }
+        ],
+        "HTML Fundamentals": [
+            {
+                "id": "html1",
+                "question": "What does HTML stand for?",
+                "options": [
+                    "HyperText Markup Language",
+                    "HighText Machine Language",
+                    "HyperTransfer Markup Language",
+                    "HyperText and links Markup Language"
+                ],
+                "answer": "HyperText Markup Language"
+            },
+            {
+                "id": "html2",
+                "question": "Which HTML tag is used to define an internal style sheet?",
+                "options": [
+                    "<style>",
+                    "<script>",
+                    "<css>",
+                    "<link>"
+                ],
+                "answer": "<style>"
+            },
+            {
+                "id": "html3",
+                "question": "Which HTML element is used to specify a footer for a document or section?",
+                "options": [
+                    "<footer>",
+                    "<bottom>",
+                    "<section-footer>",
+                    "<foot>"
+                ],
+                "answer": "<footer>"
+            },
+            {
+                "id": "html4",
+                "question": "What is the correct HTML element for inserting a line break?",
+                "options": [
+                    "<br>",
+                    "<lb>",
+                    "<break>",
+                    "<newline>"
+                ],
+                "answer": "<br>"
+            },
+            {
+                "id": "html5",
+                "question": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+                "options": [
+                    "alt",
+                    "src",
+                    "title",
+                    "longdesc"
+                ],
+                "answer": "alt"
+            },
+            {
+                "id": "html6",
+                "question": "Which doctype is correct for HTML5?",
+                "options": [
+                    "<!DOCTYPE html>",
+                    "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01//EN'>",
+                    "<!DOCTYPE HTML5>",
+                    "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'>"
+                ],
+                "answer": "<!DOCTYPE html>"
+            },
+            {
+                "id": "html7",
+                "question": "Which HTML element is used for the largest heading?",
+                "options": [
+                    "<h1>",
+                    "<heading>",
+                    "<h6>",
+                    "<head>"
+                ],
+                "answer": "<h1>"
+            },
+            {
+                "id": "html8",
+                "question": "What is the correct HTML for creating a hyperlink?",
+                "options": [
+                    "<a href='url'>link text</a>",
+                    "<link src='url'>link text</link>",
+                    "<a>url</a>",
+                    "<hyperlink>url</hyperlink>"
+                ],
+                "answer": "<a href='url'>link text</a>"
+            },
+            {
+                "id": "html9",
+                "question": "How can you open a link in a new tab/browser window?",
+                "options": [
+                    "<a href='url' target='_blank'>",
+                    "<a href='url' new>",
+                    "<a href='url' target='new'>",
+                    "<a href='url' open='new_tab'>"
+                ],
+                "answer": "<a href='url' target='_blank'>"
+            },
+            {
+                "id": "html10",
+                "question": "Which of these elements are all <table> elements?",
+                "options": [
+                    "<table><tr><td>",
+                    "<table><head><tfoot>",
+                    "<thead><body><tr>",
+                    "<table><tr><tt>"
+                ],
+                "answer": "<table><tr><td>"
+            },
+            {
+                "id": "html11",
+                "question": "How can you make a numbered list?",
+                "options": [
+                    "<ol>",
+                    "<ul>",
+                    "<dl>",
+                    "<list>"
+                ],
+                "answer": "<ol>"
+            },
+            {
+                "id": "html12",
+                "question": "What is the correct HTML for making a checkbox?",
+                "options": [
+                    "<input type='checkbox'>",
+                    "<checkbox>",
+                    "<check>",
+                    "<input type='check'>"
+                ],
+                "answer": "<input type='checkbox'>"
+            },
+            {
+                "id": "html13",
+                "question": "Which tag is used to create a numbered list?",
+                "options": [
+                    "<ol>",
+                    "<ul>",
+                    "<li>",
+                    "<dl>"
+                ],
+                "answer": "<ol>"
+            },
+            {
+                "id": "html14",
+                "question": "Which tag defines a table row?",
+                "options": [
+                    "<tr>",
+                    "<td>",
+                    "<th>",
+                    "<row>"
+                ],
+                "answer": "<tr>"
+            },
+            {
+                "id": "html15",
+                "question": "What is the correct tag to make text bold?",
+                "options": [
+                    "<b>",
+                    "<strong>",
+                    "<bold>",
+                    "Both A and B"
+                ],
+                "answer": "Both A and B"
+            },
+            {
+                "id": "html16",
+                "question": "Which attribute specifies an image source?",
+                "options": [
+                    "src",
+                    "href",
+                    "link",
+                    "path"
+                ],
+                "answer": "src"
+            },
+            {
+                "id": "html17",
+                "question": "Which tag is used to insert a line break?",
+                "options": [
+                    "<br>",
+                    "<break>",
+                    "<lb>",
+                    "<newline>"
+                ],
+                "answer": "<br>"
+            },
+            {
+                "id": "html18",
+                "question": "What does `<a>` stand for in HTML?",
+                "options": [
+                    "Anchor",
+                    "Action",
+                    "Article",
+                    "Apply"
+                ],
+                "answer": "Anchor"
+            },
+            {
+                "id": "html19",
+                "question": "Which tag defines the document title shown in the browser tab?",
+                "options": [
+                    "<title>",
+                    "<header>",
+                    "<meta>",
+                    "<head>"
+                ],
+                "answer": "<title>"
+            },
+            {
+                "id": "html20",
+                "question": "Which element is used for inserting a horizontal line?",
+                "options": [
+                    "<hr>",
+                    "<line>",
+                    "<br>",
+                    "<horizontal>"
+                ],
+                "answer": "<hr>"
+            },
+            {
+                "id": "html21",
+                "question": "Which tag groups block-level and inline elements?",
+                "options": [
+                    "<div>",
+                    "<span>",
+                    "<section>",
+                    "<group>"
+                ],
+                "answer": "<div>"
+            },
+            {
+                "id": "html22",
+                "question": "Which input type is used for password fields?",
+                "options": [
+                    "password",
+                    "text",
+                    "secure",
+                    "hidden"
+                ],
+                "answer": "password"
+            },
+            {
+                "id": "html23",
+                "question": "Which tag defines a drop-down list?",
+                "options": [
+                    "<select>",
+                    "<option>",
+                    "<dropdown>",
+                    "<list>"
+                ],
+                "answer": "<select>"
+            },
+            {
+                "id": "html24",
+                "question": "Which tag defines emphasized text?",
+                "options": [
+                    "<em>",
+                    "<i>",
+                    "<strong>",
+                    "<italic>"
+                ],
+                "answer": "<em>"
+            },
+            {
+                "id": "html25",
+                "question": "Which tag is used to embed a video in HTML5?",
+                "options": [
+                    "<video>",
+                    "<media>",
+                    "<movie>",
+                    "<embed>"
+                ],
+                "answer": "<video>"
+            },
+            {
+                "id": "html26",
+                "question": "What is the correct HTML for inserting an image?",
+                "options": [
+                    "<img src='image.jpg'>",
+                    "<image src='image.jpg'>",
+                    "<img>image.jpg</img>",
+                    "<pic src='image.jpg'>"
+                ],
+                "answer": "<img src='image.jpg'>"
+            },
+            {
+                "id": "html27",
+                "question": "Which element represents navigation links?",
+                "options": [
+                    "<nav>",
+                    "<menu>",
+                    "<ul>",
+                    "<section>"
+                ],
+                "answer": "<nav>"
+            },
+            {
+                "id": "html28",
+                "question": "Which tag is used for table headings?",
+                "options": [
+                    "<th>",
+                    "<tr>",
+                    "<td>",
+                    "<head>"
+                ],
+                "answer": "<th>"
+            },
+            {
+                "id": "html29",
+                "question": "Which attribute is used to specify inline CSS styles?",
+                "options": [
+                    "style",
+                    "class",
+                    "css",
+                    "design"
+                ],
+                "answer": "style"
+            },
+            {
+                "id": "html30",
+                "question": "Which tag defines a paragraph?",
+                "options": [
+                    "<p>",
+                    "<paragraph>",
+                    "<para>",
+                    "<text>"
+                ],
+                "answer": "<p>"
+            }
+        ],
+        "CSS Flexbox": [
+            {
+                "id": "flex1",
+                "question": "Which property is used to make a container a flex container?",
+                "options": [
+                    "display: flex;",
+                    "flex-direction: row;",
+                    "align-items: center;",
+                    "justify-content: space-between;"
+                ],
+                "answer": "display: flex;"
+            },
+            {
+                "id": "flex2",
+                "question": "What does `justify-content: center;` do in a flex container?",
+                "options": [
+                    "Aligns items to the center of the main axis",
+                    "Aligns items to the center of the cross axis",
+                    "Stretches items to fill the container",
+                    "Distributes space around items"
+                ],
+                "answer": "Aligns items to the center of the main axis"
+            },
+            {
+                "id": "flex3",
+                "question": "Which `align-items` value stretches flex items to fill the container's cross axis?",
+                "options": [
+                    "stretch",
+                    "center",
+                    "flex-start",
+                    "baseline"
+                ],
+                "answer": "stretch"
+            },
+            {
+                "id": "flex4",
+                "question": "The `flex-direction` property defines:",
+                "options": [
+                    "The direction flex items are placed in the flex container",
+                    "The direction of the text",
+                    "The direction of the container itself",
+                    "How items wrap"
+                ],
+                "answer": "The direction flex items are placed in the flex container"
+            },
+            {
+                "id": "flex5",
+                "question": "What does `flex-wrap: wrap;` do?",
+                "options": [
+                    "Allows items to wrap to the next line if there isn't enough space",
+                    "Reverses the order of items",
+                    "Makes items shrink to fit",
+                    "Stretches items"
+                ],
+                "answer": "Allows items to wrap to the next line if there isn't enough space"
+            },
+            {
+                "id": "flex6",
+                "question": "The `order` property for a flex item:",
+                "options": [
+                    "Controls the order in which items appear in the flex container",
+                    "Orders items alphabetically",
+                    "Sets the z-index",
+                    "Is not a valid flex property"
+                ],
+                "answer": "Controls the order in which items appear in the flex container"
+            },
+            {
+                "id": "flex7",
+                "question": "Which property aligns a single flex item on the cross-axis, overriding `align-items`?",
+                "options": [
+                    "align-self",
+                    "justify-self",
+                    "place-self",
+                    "self-align"
+                ],
+                "answer": "align-self"
+            },
+            {
+                "id": "flex8",
+                "question": "`flex-grow: 1;` on a flex item means:",
+                "options": [
+                    "The item will take up available space along the main axis",
+                    "The item will grow to 100px",
+                    "The item is the first item",
+                    "The item has a fixed size"
+                ],
+                "answer": "The item will take up available space along the main axis"
+            },
+            {
+                "id": "flex9",
+                "question": "What is the default value of `flex-direction`?",
+                "options": [
+                    "row",
+                    "column",
+                    "row-reverse",
+                    "column-reverse"
+                ],
+                "answer": "row"
+            },
+            {
+                "id": "flex10",
+                "question": "To distribute space evenly between flex items, you can use:",
+                "options": [
+                    "justify-content: space-around;",
+                    "justify-content: flex-start;",
+                    "align-content: space-between;",
+                    "gap: auto;"
+                ],
+                "answer": "justify-content: space-around;"
+            },
+            {
+                "id": "flex11",
+                "question": "The `flex-basis` property specifies:",
+                "options": [
+                    "The initial main size of a flex item",
+                    "The base font size",
+                    "The minimum width of an item",
+                    "The maximum height of an item"
+                ],
+                "answer": "The initial main size of a flex item"
+            },
+            {
+                "id": "flex12",
+                "question": "Which is a shorthand property for `flex-grow`, `flex-shrink`, and `flex-basis`?",
+                "options": [
+                    "flex",
+                    "flex-flow",
+                    "flex-item",
+                    "flex-container"
+                ],
+                "answer": "flex"
+            },
+            {
+                "id": "flex13",
+                "question": "Which property defines the main axis direction?",
+                "options": [
+                    "flex-direction",
+                    "justify-content",
+                    "align-items",
+                    "direction"
+                ],
+                "answer": "flex-direction"
+            },
+            {
+                "id": "flex14",
+                "question": "Which property controls space between items on the main axis?",
+                "options": [
+                    "justify-content",
+                    "align-items",
+                    "flex-wrap",
+                    "gap"
+                ],
+                "answer": "justify-content"
+            },
+            {
+                "id": "flex15",
+                "question": "Which value of justify-content places items at the start?",
+                "options": [
+                    "flex-start",
+                    "start",
+                    "left",
+                    "begin"
+                ],
+                "answer": "flex-start"
+            },
+            {
+                "id": "flex16",
+                "question": "Which property controls alignment on the cross axis?",
+                "options": [
+                    "align-items",
+                    "justify-content",
+                    "align-content",
+                    "cross-align"
+                ],
+                "answer": "align-items"
+            },
+            {
+                "id": "flex17",
+                "question": "Which property allows wrapping of flex items?",
+                "options": [
+                    "flex-wrap",
+                    "wrap-items",
+                    "flex-flow",
+                    "item-wrap"
+                ],
+                "answer": "flex-wrap"
+            },
+            {
+                "id": "flex18",
+                "question": "Which shorthand combines flex-direction and flex-wrap?",
+                "options": [
+                    "flex-flow",
+                    "flex-layout",
+                    "flex-group",
+                    "flow-wrap"
+                ],
+                "answer": "flex-flow"
+            },
+            {
+                "id": "flex19",
+                "question": "Which value centers items on the main axis?",
+                "options": [
+                    "center",
+                    "middle",
+                    "flex-center",
+                    "justify-center"
+                ],
+                "answer": "center"
+            },
+            {
+                "id": "flex20",
+                "question": "Which value for align-items stretches items to fill?",
+                "options": [
+                    "stretch",
+                    "fill",
+                    "expand",
+                    "grow"
+                ],
+                "answer": "stretch"
+            },
+            {
+                "id": "flex21",
+                "question": "Which property distributes extra space in items?",
+                "options": [
+                    "flex-grow",
+                    "flex-shrink",
+                    "flex-basis",
+                    "grow-space"
+                ],
+                "answer": "flex-grow"
+            },
+            {
+                "id": "flex22",
+                "question": "Which property defines the initial size of a flex item?",
+                "options": [
+                    "flex-basis",
+                    "flex-grow",
+                    "flex-shrink",
+                    "size"
+                ],
+                "answer": "flex-basis"
+            },
+            {
+                "id": "flex23",
+                "question": "Which value for justify-content spreads items with space between?",
+                "options": [
+                    "space-between",
+                    "space-around",
+                    "space-evenly",
+                    "stretch"
+                ],
+                "answer": "space-between"
+            },
+            {
+                "id": "flex24",
+                "question": "Which property sets the alignment for multi-line flex containers?",
+                "options": [
+                    "align-content",
+                    "align-items",
+                    "justify-content",
+                    "multi-align"
+                ],
+                "answer": "align-content"
+            },
+            {
+                "id": "flex25",
+                "question": "Which value for flex-direction arranges items top to bottom?",
+                "options": [
+                    "column",
+                    "row",
+                    "vertical",
+                    "stack"
+                ],
+                "answer": "column"
+            },
+            {
+                "id": "flex26",
+                "question": "Which property reduces item size when necessary?",
+                "options": [
+                    "flex-shrink",
+                    "flex-grow",
+                    "flex-reduce",
+                    "shrink-size"
+                ],
+                "answer": "flex-shrink"
+            },
+            {
+                "id": "flex27",
+                "question": "Which display value enables Flexbox layout?",
+                "options": [
+                    "flex",
+                    "inline-flex",
+                    "block-flex",
+                    "display-flex"
+                ],
+                "answer": "flex"
+            },
+            {
+                "id": "flex28",
+                "question": "Which property aligns individual items overriding align-items?",
+                "options": [
+                    "align-self",
+                    "self-align",
+                    "item-align",
+                    "align-individual"
+                ],
+                "answer": "align-self"
+            },
+            {
+                "id": "flex29",
+                "question": "Which value for justify-content distributes space evenly?",
+                "options": [
+                    "space-evenly",
+                    "space-between",
+                    "space-around",
+                    "stretch"
+                ],
+                "answer": "space-evenly"
+            },
+            {
+                "id": "flex30",
+                "question": "Which value of align-items places items at the bottom?",
+                "options": [
+                    "flex-end",
+                    "end",
+                    "bottom",
+                    "align-bottom"
+                ],
+                "answer": "flex-end"
+            }
+        ],
+        "CSS Grid": [
+            {
+                "id": "grid1",
+                "question": "Which property is used to make a container a grid container?",
+                "options": [
+                    "display: grid;",
+                    "grid-template-columns: auto;",
+                    "grid-gap: 10px;",
+                    "position: grid;"
+                ],
+                "answer": "display: grid;"
+            },
+            {
+                "id": "grid2",
+                "question": "How do you define three columns of equal width in CSS Grid?",
+                "options": [
+                    "grid-template-columns: 1fr 1fr 1fr;",
+                    "grid-columns: 3;",
+                    "columns: 1fr 1fr 1fr;",
+                    "grid-template: repeat(3, 1fr);"
+                ],
+                "answer": "grid-template-columns: 1fr 1fr 1fr;"
+            },
+            {
+                "id": "grid3",
+                "question": "What does the `grid-gap` property define?",
+                "options": [
+                    "The space between grid cells (gutters)",
+                    "The size of the grid tracks",
+                    "The alignment of items within the grid",
+                    "The overall width of the grid"
+                ],
+                "answer": "The space between grid cells (gutters)"
+            },
+            {
+                "id": "grid4",
+                "question": "The `fr` unit in CSS Grid stands for:",
+                "options": [
+                    "Fractional unit",
+                    "Free space ratio",
+                    "Fixed ratio",
+                    "Frame resolution"
+                ],
+                "answer": "Fractional unit"
+            },
+            {
+                "id": "grid5",
+                "question": "How can you make a grid item span 2 columns starting from column line 1?",
+                "options": [
+                    "grid-column: 1 / 3;",
+                    "grid-column-span: 2;",
+                    "grid-area: 1 / 1 / 1 / 3;",
+                    "column-span: 2;"
+                ],
+                "answer": "grid-column: 1 / 3;"
+            },
+            {
+                "id": "grid6",
+                "question": "Which property is a shorthand for `grid-row-gap` and `grid-column-gap`?",
+                "options": [
+                    "gap",
+                    "grid-spacing",
+                    "gutter",
+                    "grid-margin"
+                ],
+                "answer": "gap"
+            },
+            {
+                "id": "grid7",
+                "question": "`grid-auto-flow: column;` will:",
+                "options": [
+                    "Fill the grid column by column",
+                    "Create columns automatically",
+                    "Make all items flow into one column",
+                    "Reverse the column order"
+                ],
+                "answer": "Fill the grid column by column"
+            },
+            {
+                "id": "grid8",
+                "question": "To name grid areas, you use the property:",
+                "options": [
+                    "grid-template-areas",
+                    "grid-area-names",
+                    "define-grid-areas",
+                    "grid-layout-areas"
+                ],
+                "answer": "grid-template-areas"
+            },
+            {
+                "id": "grid9",
+                "question": "The `repeat()` function in `grid-template-columns` is used for:",
+                "options": [
+                    "Repeating a track listing",
+                    "Repeating the grid display",
+                    "Repeating item content",
+                    "Repeating animations"
+                ],
+                "answer": "Repeating a track listing"
+            },
+            {
+                "id": "grid10",
+                "question": "How do you align items along the block (column) axis within their grid area?",
+                "options": [
+                    "align-items",
+                    "justify-items",
+                    "place-items",
+                    "align-content"
+                ],
+                "answer": "align-items"
+            },
+            {
+                "id": "grid11",
+                "question": "What is the purpose of `grid-template-rows`?",
+                "options": [
+                    "Defines the size and number of rows in a grid layout",
+                    "Defines the template for row content",
+                    "Automatically flows content into rows",
+                    "Sets the color of row lines"
+                ],
+                "answer": "Defines the size and number of rows in a grid layout"
+            },
+            {
+                "id": "grid12",
+                "question": "To make a grid item start on row line 2 and end on row line 4, you use:",
+                "options": [
+                    "grid-row: 2 / 4;",
+                    "grid-row-span: 2;",
+                    "grid-row-start: 2; grid-row-end: 3;",
+                    "row: 2-4;"
+                ],
+                "answer": "grid-row: 2 / 4;"
+            },
+            {
+                "id": "grid13",
+                "question": "Which property defines the size of grid columns?",
+                "options": [
+                    "grid-template-columns",
+                    "grid-columns",
+                    "grid-width",
+                    "column-size"
+                ],
+                "answer": "grid-template-columns"
+            },
+            {
+                "id": "grid14",
+                "question": "Which function is used for fractional units?",
+                "options": [
+                    "fr",
+                    "fraction()",
+                    "unit()",
+                    "part()"
+                ],
+                "answer": "fr"
+            },
+            {
+                "id": "grid15",
+                "question": "Which property defines the size of grid rows?",
+                "options": [
+                    "grid-template-rows",
+                    "grid-rows",
+                    "grid-height",
+                    "row-size"
+                ],
+                "answer": "grid-template-rows"
+            },
+            {
+                "id": "grid16",
+                "question": "Which property defines the gap between grid items?",
+                "options": [
+                    "gap",
+                    "grid-gap",
+                    "space",
+                    "spacing"
+                ],
+                "answer": "gap"
+            },
+            {
+                "id": "grid17",
+                "question": "Which property sets both row and column gaps?",
+                "options": [
+                    "gap",
+                    "grid-gap",
+                    "spacing",
+                    "gutter"
+                ],
+                "answer": "gap"
+            },
+            {
+                "id": "grid18",
+                "question": "Which property makes an item span multiple columns?",
+                "options": [
+                    "grid-column",
+                    "grid-span",
+                    "column-span",
+                    "grid-col"
+                ],
+                "answer": "grid-column"
+            },
+            {
+                "id": "grid19",
+                "question": "Which value defines auto placement in grid?",
+                "options": [
+                    "auto",
+                    "grid-auto-flow",
+                    "flow",
+                    "place-auto"
+                ],
+                "answer": "grid-auto-flow"
+            },
+            {
+                "id": "grid20",
+                "question": "Which function repeats track definitions?",
+                "options": [
+                    "repeat()",
+                    "loop()",
+                    "auto()",
+                    "cycle()"
+                ],
+                "answer": "repeat()"
+            },
+            {
+                "id": "grid21",
+                "question": "Which property defines named grid areas?",
+                "options": [
+                    "grid-template-areas",
+                    "grid-areas",
+                    "area-names",
+                    "grid-names"
+                ],
+                "answer": "grid-template-areas"
+            },
+            {
+                "id": "grid22",
+                "question": "Which property aligns items inside a grid area?",
+                "options": [
+                    "align-items",
+                    "justify-items",
+                    "place-items",
+                    "item-align"
+                ],
+                "answer": "justify-items"
+            },
+            {
+                "id": "grid23",
+                "question": "Which value places items from left to right?",
+                "options": [
+                    "row",
+                    "column",
+                    "horizontal",
+                    "inline"
+                ],
+                "answer": "row"
+            },
+            {
+                "id": "grid24",
+                "question": "Which property is used to align the entire grid container?",
+                "options": [
+                    "justify-content",
+                    "align-content",
+                    "place-content",
+                    "grid-align"
+                ],
+                "answer": "justify-content"
+            },
+            {
+                "id": "grid25",
+                "question": "Which property aligns items in their cells vertically?",
+                "options": [
+                    "align-items",
+                    "justify-items",
+                    "vertical-align",
+                    "align-cell"
+                ],
+                "answer": "align-items"
+            },
+            {
+                "id": "grid26",
+                "question": "Which value makes an item span across multiple rows?",
+                "options": [
+                    "grid-row",
+                    "row-span",
+                    "grid-span",
+                    "grid-rows"
+                ],
+                "answer": "grid-row"
+            },
+            {
+                "id": "grid27",
+                "question": "Which property defines implicit grid rows?",
+                "options": [
+                    "grid-auto-rows",
+                    "auto-rows",
+                    "implicit-rows",
+                    "grid-rows"
+                ],
+                "answer": "grid-auto-rows"
+            },
+            {
+                "id": "grid28",
+                "question": "Which shorthand sets both rows and columns?",
+                "options": [
+                    "grid-template",
+                    "grid-layout",
+                    "grid-structure",
+                    "grid-config"
+                ],
+                "answer": "grid-template"
+            },
+            {
+                "id": "grid29",
+                "question": "Which CSS function creates min and max sizes?",
+                "options": [
+                    "minmax()",
+                    "range()",
+                    "size()",
+                    "limit()"
+                ],
+                "answer": "minmax()"
+            },
+            {
+                "id": "grid30",
+                "question": "Which property aligns items individually in grid?",
+                "options": [
+                    "align-self",
+                    "justify-self",
+                    "place-self",
+                    "self-align"
+                ],
+                "answer": "align-self"
+            }
+        ]
+    },
+    "settings": {
+        "maxQuestionsPerQuiz": 10
+    }
+}
